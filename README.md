@@ -12,14 +12,14 @@ This is a test for publishing NSG&B Open API descriptions in Github using [Redoc
 
 ### Usage
 
-#### `npm start`
+#### `npm run preview`
 Starts the reference docs preview server.
 
-#### `npm run build`
-Bundles the definition to the dist folder.
+#### `npm run publish-v1`
+Published the versioned API. Use v2 for the next version etc.
 
-#### `npm test`
-Validates the definition.
+#### `npm run lint-v1`
+Run API linter for the given version
 
 ## Contribution Guide
 
@@ -63,15 +63,14 @@ More details inside the `code_samples` folder README.
 
 ## Publishing API versions
 
-Running `npm run build` updates the latests api docs. In order to publish separate versions, redocly bundle can be used.
+API versioning is done by creating a new API page for each version and publishing the bundled specification for that version. To create a new major version look into packages.json for example.
 
-Publish/bundle new version (in docs folder):
+To bundle and publish new minor version use existing shorthands from packages.json, for example:
 ```
-redocly bundle ../openapi/openapi.yaml -o v1.json
+npm run publish-v2
 ```
 
-TODO:
-* Separate index pages for versions?
+Remember to update minor version number to API root in `openapi/v{number}.yaml`
 
 ### Add code examples
 

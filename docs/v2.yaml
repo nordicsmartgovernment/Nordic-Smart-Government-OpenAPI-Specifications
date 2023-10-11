@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: 1.0.0
+  version: 2.0.0
   title: Nordic Governments API - business information
   termsOfService: https://example.com/terms/
   contact:
