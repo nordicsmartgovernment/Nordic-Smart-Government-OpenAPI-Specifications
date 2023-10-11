@@ -1,0 +1,52 @@
+openapi: 3.1.0
+info:
+  version: 2.0.0
+  title: Nordic Governments API - business information 
+  termsOfService: https://example.com/terms/
+  contact:
+    email: contact@example.com
+    url: http://example.com/contact
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  x-logo:
+    url: logo.svg
+  description: >
+    With this API you can retrieve information about registered organisations (includes company, business, sole trader, non-profit association etc). 
+    
+    The API use POST instead of GET because we don't want to display identification number (which can be considered sensitive personal data) in the URL.
+externalDocs:
+  url: http://uri.suomi.fi/datamodel/ns/agent2
+  description: Datamodel for the API
+servers:
+  - url: https://example.org/nordicinformation/v1/
+  - url: https://example2.org/nordicinformation/v1/
+security:
+  - OAuth2:
+      - orgname:read
+  - BearerToken: []
+tags:
+  - name: nordicinformation
+    description: API to retrieve data about registered organisations.
+  - name: isalive
+    description: API to control the status of the service.
+  - name: financialstatements
+    description: API to retrieve financial statements for registered organisations.
+paths:
+  /v2/registeredorganisations:
+    $ref: paths/registeredorganisations.yaml
+  /id/{brisid}:
+    $ref: paths/id/bris.yaml
+  /v2/isalive:
+    $ref: paths/isalive.yaml
+  /v2/financialstatements:
+    $ref: paths/financialstatements.yaml
+components:
+  securitySchemes:
+    main_auth:
+      $ref: components/securitySchemes/main_auth.yaml
+    api_key:
+      $ref: components/securitySchemes/api_key.yaml
+    basic_auth:
+      $ref: components/securitySchemes/basic_auth.yaml
+

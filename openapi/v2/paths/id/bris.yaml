@@ -1,0 +1,8 @@
+get:
+  tags:
+    - nordicinformation
+  description: With this operation you can retrieve information about the organisation.
+  responses:
+    '200':
+      $ref: '../../components/responses/RegisteredOrganisationResponse.yaml'
+  

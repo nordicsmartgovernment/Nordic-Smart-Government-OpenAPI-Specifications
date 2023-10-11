@@ -1,0 +1,5 @@
+    description: An request for financial statements.
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/FinancialStatementQuery.yaml'

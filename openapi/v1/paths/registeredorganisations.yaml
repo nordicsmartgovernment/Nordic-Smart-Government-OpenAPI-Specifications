@@ -1,0 +1,72 @@
+post:
+  tags:
+    - nordicinformation
+  summary: Retrieve data about a registered organisation
+  description: With this operation you can retrieve data about a registered organisation.
+  parameters:
+    - name: X-Request-Id
+      in: header
+      description: >-
+        Client generated ID to call the API. In case of error this will be sent
+        in the attribute `requestId` or as a header attribute.
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: string
+      example: d120654c-0d09-481a-8956-940a76474e6b
+  requestBody:
+    description: >-
+      An object to specify `notation` (a unique set of characters used to
+      identify the registered organisation) and `country` (the country you want
+      request data from).
+    content:
+      application/json:
+        schema:
+          $ref: ..\components\schemas\RegisteredOrganisationRequest.yaml
+  responses:
+    '200':
+      description: Reply with requested company data.
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: ..\components\schemas\RegisteredOrganisationResponse.yaml
+    '400':
+      description: Wrong format on identifier.
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: ..\components\schemas\ApiError.yaml
+    '401':
+      description: Wrong access token.
+      headers:
+        X-Request-Id:
+          description: Identification of the API-call
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: d120654c-0d09-481a-8956-940a76474e6b
+    '403':
+      description: Forbidden call, check the scope.
+      headers:
+        X-Request-Id:
+          description: ID on the call
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: d120654c-0d09-481a-8956-940a76474e6b
+    '404':
+      description: Registered organisation data is missing.
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: ..\components\schemas\ApiError.yaml
+  security:
+    - OAuth2:
+        - foretagsinformation:read
+    - default:
+        - foretagsinformation:read
+  x-auth-type: Application & Application User
+  x-throttling-tier: null

@@ -1,0 +1,20 @@
+title: Identifier
+type: object
+description: A unique set of characters used to identify the registered organisation.
+externalDocs:
+  url: http://uri.suomi.fi/datamodel/ns/agent2#Identifier
+  description: agent2#Identifier
+properties:
+  issuingAuthorityName:
+    title: issuingAuthorityName
+    description: The name of the public authority responsible for issuing the identifier.
+    type: string
+    example: 'SEBOLREG'
+  notation:
+    title: notation
+    description: A string of characters to uniquely identify a registered organisation
+    type: string
+    example: '5523451234'
+required:
+  - issuingAuthorityName
+  - organisationRegistrationNumber

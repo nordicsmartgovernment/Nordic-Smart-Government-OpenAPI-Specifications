@@ -1,0 +1,80 @@
+title: ApiError
+required:
+  - instance
+  - status
+  - title
+  - type
+type: object
+properties:
+  type:
+    type: string
+    description: |
+      One of below:
+      * `about:blank`
+      * `urn:bolagsverket:error:auth`
+      * `urn:bolagsverket:error:network`
+      * `urn:bolagsverket:error:validation`
+    example: urn:bolagsverket:error:validation
+  instance:
+    type: string
+    description: >
+      A certain value on `instance` is a unique type of error but also
+      associated with a `type`, that is one value on `instance` shall only occur
+      with a value on `type`.
+
+
+      **General**: `about:blank`
+
+      - `not.found` information not found
+
+      - `server.error` internal server error
+
+
+      **Access control**: `urn:bolagsverket:error:auth`
+
+      - `auth.error` authentication error
+
+
+      **Validation**: `urn:bolagsverket:error:validation`
+
+      - `validation.client` validation error of client request
+
+
+      **Network**: `urn:bolagsverket:error:network`
+
+      - `network.timeout` network timeout
+
+      - `network.error` internal network error
+    example: validation.client
+  status:
+    type: integer
+    description: HTTP status.
+    example: 400
+  timestamp:
+    type: string
+    description: Date and time in ISO 8601 format.
+    format: date-time
+    example: '2021-02-03T13:45:16.953149+02:00'
+  requestId:
+    type: string
+    description: Identity associated with the API call, sent in header X-Request-Id.
+    example: d120654c-0d09-481a-8956-940a76474e6b
+  title:
+    type: string
+    description: Short description of the error.
+    example: Fel format
+  detail:
+    type: string
+    description: Detailed description of the error.
+    example: 'Identitetsbeteckning måste vara 10 eller 12 siffror: A7696151111'
+  code:
+    type: string
+    description: >-
+      The error as a pre-defined code. A possible use case of this field, is for
+      different logic in the client.
+    example: FM003
+  source:
+    type: string
+    description: Name of the parameter causing the error.
+    example: identitetsbeteckning.identitet.id
+description: Error information. Based on [RFC 7807](https://tools.ietf.org/html/rfc7807).

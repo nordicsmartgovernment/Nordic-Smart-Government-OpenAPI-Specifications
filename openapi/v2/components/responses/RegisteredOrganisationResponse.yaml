@@ -1,0 +1,5 @@
+description: Reply with requested company data.
+content:
+  application/json; charset=utf-8:
+    schema:
+      $ref: '../schemas/RegisteredOrganisation.yaml'

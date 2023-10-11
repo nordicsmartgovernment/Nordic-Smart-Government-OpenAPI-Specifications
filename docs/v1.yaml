@@ -1,0 +1,566 @@
+openapi: 3.0.3
+info:
+  title: Nordic Governments API - business information
+  description: With this API you can retrieve information about registered organisations (includes company, business, sole trader, non-profit association etc). The API use POST instead of GET because we don't want to display identification number (which can be considered sensitive personal data) in the URL.
+  termsOfService: https://bolagsverket.se
+  version: 1.0.0
+  x-logo:
+    url: logo.svg
+servers:
+  - url: https://gw.api.bolagsverket.se/nordicinformation/v1/
+security:
+  - OAuth2:
+      - foretagsinformation:read
+  - BearerToken: []
+tags:
+  - name: nordicinformation
+    description: API to retrieve data about registered organisations.
+  - name: isalive
+    description: API to control the status of the service
+externalDocs:
+  url: http://uri.suomi.fi/datamodel/ns/agent2
+  description: Datamodel for the API
+paths:
+  /v1/registeredorganisations:
+    post:
+      tags:
+        - nordicinformation
+      summary: Retrieve data about a registered organisation
+      description: With this operation you can retrieve data about a registered organisation.
+      parameters:
+        - name: X-Request-Id
+          in: header
+          description: Client generated ID to call the API. In case of error this will be sent in the attribute `requestId` or as a header attribute.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: d120654c-0d09-481a-8956-940a76474e6b
+      requestBody:
+        description: An object to specify `notation` (a unique set of characters used to identify the registered organisation) and `country` (the country you want request data from).
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisteredOrganisationRequest'
+      responses:
+        '200':
+          description: Reply with requested company data.
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/RegisteredOrganisationResponse'
+        '400':
+          description: Wrong format on identifier.
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        '401':
+          description: Wrong access token.
+          headers:
+            X-Request-Id:
+              description: Identification of the API-call
+              style: simple
+              explode: false
+              schema:
+                type: string
+              example: d120654c-0d09-481a-8956-940a76474e6b
+        '403':
+          description: Forbidden call, check the scope.
+          headers:
+            X-Request-Id:
+              description: ID on the call
+              style: simple
+              explode: false
+              schema:
+                type: string
+              example: d120654c-0d09-481a-8956-940a76474e6b
+        '404':
+          description: Registered organisation data is missing.
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+      security:
+        - OAuth2:
+            - foretagsinformation:read
+        - default:
+            - foretagsinformation:read
+      x-auth-type: Application & Application User
+      x-throttling-tier: null
+  /v1/isalive:
+    get:
+      tags:
+        - isalive
+      summary: API-status
+      description: With this operation you can check to see that the API is up and running.
+      responses:
+        '200':
+          description: OK
+        '503':
+          description: Server Unavailable
+      security:
+        - OAuth2:
+            - foretagsinformation:monitor
+        - default:
+            - foretagsinformation:monitor
+      x-auth-type: Application & Application User
+      x-throttling-tier: null
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /oauth2/token
+          scopes:
+            foretagsinformation:read: Read rights to Företagsinformation
+            foretagsinformation:monitor: Monitor rights to Företagsinformation
+          x-scopes-bindings:
+            foretagsinformation:read: api-foretagsinformation-read
+            foretagsinformation:monitor: api-foretagsinformation
+    BearerToken:
+      type: http
+      scheme: bearer
+    default:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://gw.api.bolagsverket.se/authorize
+          scopes:
+            foretagsinformation:monitor: Monitor rights to Företagsinformation
+            foretagsinformation:read: Read rights to Företagsinformation
+          x-scopes-bindings:
+            foretagsinformation:monitor: api-foretagsinformation
+            foretagsinformation:read: api-foretagsinformation-read
+  schemas:
+    RegisteredOrganisationRequest:
+      title: RegisteredOrganisationRequest
+      required:
+        - identitetsbeteckning
+      type: object
+      properties:
+        notation:
+          type: string
+          description: A unique set of characters used to identify the registered organisation. In Sweden this is one of 'organisationsnummer', 'personnummer', 'samordningsnummer' or 'gdNummer'.
+          example: '5512234567'
+        country:
+          type: string
+          description: The country you want request data from. Valid values are 'SE', 'NO', 'FI', and 'IS'.
+          example: SE
+      description: Object to request data about a registered organisation.
+    Identifier:
+      title: Identifier
+      type: object
+      description: A unique set of characters used to identify the registered organisation.
+      externalDocs:
+        url: http://uri.suomi.fi/datamodel/ns/agent2#Identifier
+        description: agent2#Identifier
+      properties:
+        issuingAuthorityName:
+          title: issuingAuthorityName
+          description: The name of the public authority responsible for issuing the identifier.
+          type: string
+          example: SEBOLREG
+        notation:
+          title: notation
+          description: A string of characters to uniquely identify a registered organisation
+          type: string
+          example: '5523451234'
+      required:
+        - issuingAuthorityName
+        - organisationRegistrationNumber
+    Address:
+      title: Address
+      type: object
+      description: The registered address is the address, to which formal communications can be sent to the registered organisation. The postal address is the address to which mail can be sent to the registered organisation.
+      externalDocs:
+        url: http://uri.suomi.fi/datamodel/ns/agent2#Address
+        description: agent2#Address
+      minProperties: 0
+      properties:
+        fullAddress:
+          title: fullAddress
+          description: The complete address written as a string, separated with ";".
+          type: string
+          example: Queen Street 1; 23456; City of Gold; Sweden
+      required:
+        - fullAddress
+    LegalForm:
+      title: LegalForm
+      type: object
+      externalDocs:
+        url: http://uri.suomi.fi/datamodel/ns/agent2#LegalForm
+        description: agent2#LegalForm
+      description: The legal form of a registered organisation.
+      properties:
+        code:
+          title: Code
+          description: 'The legal form code of an agent according to a national scheme based on national legislation. In this model the code is the nationally registered code with a country prefix. Example: "SE_AB". For the EU form Societas Europaea the legal form code SE i sused for all countries.'
+          enum:
+            - FI_AHVE
+            - FI_AHVELL
+            - FI_AOY
+            - FI_ASH
+            - FI_ASY
+            - FI_AY
+            - FI_AYH
+            - FI_ELSYH
+            - FI_ESAA
+            - FI_ETS
+            - FI_ETY
+            - FI_EUOKKT
+            - FI_EVL
+            - FI_EVLUT
+            - FI_EYHT
+            - FI_HYYH
+            - FI_KK
+            - FI_KONK
+            - FI_KOY
+            - FI_KP
+            - FI_KUNT
+            - FI_KUNTLL
+            - FI_KUNTLLL
+            - FI_KUNTYHT
+            - FI_KVAKYH
+            - FI_KVJ
+            - FI_KVY
+            - FI_KY
+            - FI_LIY
+            - FI_MHY
+            - FI_MJUO
+            - FI_MOHLO
+            - FI_MSAA
+            - FI_MTYH
+            - FI_MUU
+            - FI_MUUKOY
+            - FI_MUVE
+            - FI_MUYP
+            - FI_MYH
+            - FI_OK
+            - FI_OP
+            - FI_ORTO
+            - FI_OY
+            - FI_OYJ
+            - FI_PK
+            - FI_PY
+            - FI_SAA
+            - FI_SCE
+            - FI_SCP
+            - FI_SL
+            - FI_SP
+            - FI_TEKA
+            - FI_TYH
+            - FI_TYKA
+            - FI_ULKO
+            - FI_UYK
+            - FI_VAKK
+            - FI_VALT
+            - FI_VALTLL
+            - FI_VEYHT
+            - FI_VOJ
+            - FI_VOY
+            - FI_VY
+            - FI_YEH
+            - FI_YHME
+            - FI_YHTE
+            - FI_YO
+            - IS_A1
+            - IS_A2
+            - IS_A3
+            - IS_A4
+            - IS_A5
+            - IS_AX
+            - IS_B1
+            - IS_B2
+            - IS_BX
+            - IS_C1
+            - IS_C2
+            - IS_CX
+            - IS_D1
+            - IS_D2
+            - IS_D3
+            - IS_D4
+            - IS_DX
+            - IS_E1
+            - IS_E2
+            - IS_EHF
+            - IS_EX
+            - IS_F1
+            - IS_G1
+            - IS_G2
+            - IS_H1
+            - IS_H2
+            - IS_H3
+            - IS_HF
+            - IS_HX
+            - IS_K1
+            - IS_K2
+            - IS_K3
+            - IS_K4
+            - IS_K5
+            - IS_KX
+            - IS_L1
+            - IS_LX
+            - IS_M1
+            - IS_N1
+            - IS_N2
+            - IS_NX
+            - IS_OHF
+            - IS_P1
+            - IS_P2
+            - IS_P3
+            - IS_P4
+            - IS_P5
+            - IS_P7
+            - IS_P8
+            - IS_P9
+            - IS_R1
+            - IS_R2
+            - IS_RX
+            - IS_SLF
+            - IS_SLHF
+            - IS_Z1
+            - IS_Z2
+            - IS_Z3
+            - IS_Z5
+            - IS_Z6
+            - IS_Z7
+            - IS_Z8
+            - IS_Z9
+            - IS_ZX
+            - IS_ZY
+            - NO_AAFY
+            - NO_ADOS
+            - NO_ANNA
+            - NO_ANS
+            - NO_AS
+            - NO_ASA
+            - NO_BA
+            - NO_BBL
+            - NO_BEDR
+            - NO_BO
+            - NO_BRL
+            - NO_DA
+            - NO_ENK
+            - NO_EOEFG
+            - NO_ESEK
+            - NO_FKF
+            - NO_FLI
+            - NO_FYLK
+            - NO_GFS
+            - NO_IKJP
+            - NO_IKS
+            - NO_KBO
+            - NO_KF
+            - NO_KIRK
+            - NO_KOMM
+            - NO_KS
+            - NO_KTRF
+            - NO_NUF
+            - NO_OPMV
+            - NO_ORGL
+            - NO_PERS
+            - NO_PK
+            - NO_PRE
+            - NO_SA
+            - NO_SAER
+            - NO_SAM
+            - NO_SF
+            - NO_SPA
+            - NO_STAT
+            - NO_STI
+            - NO_TVAM
+            - NO_VPFO
+            - SE
+            - SE_AB
+            - SE_BAB
+            - SE_BF
+            - SE_BFL
+            - SE_BRF
+            - SE_E
+            - SE_EB
+            - SE_EEIG
+            - SE_EGTS
+            - SE_EK
+            - SE_FAB
+            - SE_FL
+            - SE_FOF
+            - SE_HB
+            - SE_I
+            - SE_KB
+            - SE_KHF
+            - SE_MB
+            - SE_OFB
+            - SE_S
+            - SE_SB
+            - SE_SCE
+            - SE_SF
+            - SE_TSF
+          type: string
+          example: SE_AB
+        name:
+          title: Name
+          description: The national name of the legal form with a specific code expressed in the field legalForm.code. Name is in local language. Example "Aktiebolag"
+          type: string
+          example: Aktiebolag
+      required:
+        - code
+        - name
+    Activity:
+      title: Activity
+      type: object
+      externalDocs:
+        url: http://uri.suomi.fi/datamodel/ns/agent2#Activity
+        description: agent2#Activity
+      description: An active deed or action carried out by a registred organisation.
+      properties:
+        code:
+          description: NACE code for the activity
+          type: string
+          example: '0112'
+        inClassification:
+          description: NACE codes are published in scheme http://data.europa.eu/ux2/nace2/nace2. Description in text for all NACE codes in all EU languages can be found there.
+          type: string
+          example: http://data.europa.eu/ux2/nace2/nace2
+        reference:
+          description: Reference to the description of the NACE code.
+          type: string
+          example: http://data.europa.eu/ux2/nace2/0112
+        sequence:
+          title: sequence
+          description: Sequence for the NACE codes, primary = 1, secondary = 2
+          type: string
+          example: 1
+      required:
+        - sequence
+        - code
+    LegalStatus:
+      title: LegalStatus
+      type: object
+      externalDocs:
+        url: http://uri.suomi.fi/datamodel/ns/agent2#LegalStatus
+        description: agent2#LegalStatus
+      description: An indication of whether a business register has registered some extraordinary proceedings for the agent
+      properties:
+        code:
+          title: Code
+          enum:
+            - NONE
+            - SOME
+          type: string
+        name:
+          title: Name
+          type: string
+          description: |
+            * `NONE`: No extraordinary circumstances registered.
+            * `SOME`: Some extraordinary circumstances registered.
+          example: No extraordinary circumstances registered.
+      required:
+        - code
+        - name
+    RegisteredOrganisationResponse:
+      title: RegisteredOrganisationResponse
+      type: object
+      properties:
+        registrationDate:
+          title: registrationDate
+          description: The date when a public authority has registered the registered organisation.
+          type: string
+          format: date
+          example: '2023-01-12'
+        name:
+          title: name
+          description: A word or a combination of characters by which a registered organisation is designated, called, or known.
+          type: string
+          example: Volvo AB
+        identifier:
+          $ref: '#/components/schemas/Identifier'
+        registeredAddress:
+          $ref: '#/components/schemas/Address'
+        postalAddress:
+          $ref: '#/components/schemas/Address'
+        legalForm:
+          $ref: '#/components/schemas/LegalForm'
+        activity:
+          title: activity
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity'
+        legalStatus:
+          $ref: '#/components/schemas/LegalStatus'
+      required:
+        - identifier
+        - registrationDate
+        - name
+        - legalStatus
+        - legalForm
+    ApiError:
+      title: ApiError
+      required:
+        - instance
+        - status
+        - title
+        - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: |
+            One of below:
+            * `about:blank`
+            * `urn:bolagsverket:error:auth`
+            * `urn:bolagsverket:error:network`
+            * `urn:bolagsverket:error:validation`
+          example: urn:bolagsverket:error:validation
+        instance:
+          type: string
+          description: |
+            A certain value on `instance` is a unique type of error but also associated with a `type`, that is one value on `instance` shall only occur with a value on `type`.
+
+            **General**: `about:blank`
+            - `not.found` information not found
+            - `server.error` internal server error
+
+            **Access control**: `urn:bolagsverket:error:auth`
+            - `auth.error` authentication error
+
+            **Validation**: `urn:bolagsverket:error:validation`
+            - `validation.client` validation error of client request
+
+            **Network**: `urn:bolagsverket:error:network`
+            - `network.timeout` network timeout
+            - `network.error` internal network error
+          example: validation.client
+        status:
+          type: integer
+          description: HTTP status.
+          example: 400
+        timestamp:
+          type: string
+          description: Date and time in ISO 8601 format.
+          format: date-time
+          example: '2021-02-03T13:45:16.953149+02:00'
+        requestId:
+          type: string
+          description: Identity associated with the API call, sent in header X-Request-Id.
+          example: d120654c-0d09-481a-8956-940a76474e6b
+        title:
+          type: string
+          description: Short description of the error.
+          example: Fel format
+        detail:
+          type: string
+          description: Detailed description of the error.
+          example: 'Identitetsbeteckning måste vara 10 eller 12 siffror: A7696151111'
+        code:
+          type: string
+          description: The error as a pre-defined code. A possible use case of this field, is for different logic in the client.
+          example: FM003
+        source:
+          type: string
+          description: Name of the parameter causing the error.
+          example: identitetsbeteckning.identitet.id
+      description: Error information. Based on [RFC 7807](https://tools.ietf.org/html/rfc7807).

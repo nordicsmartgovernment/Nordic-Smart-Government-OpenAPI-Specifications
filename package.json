@@ -1,0 +1,15 @@
+{
+  "name": "nsg-api",
+  "version": "0.0.1",
+  "dependencies": {
+    "@redocly/cli": "1.2.0"
+  },
+  "private": true,
+  "scripts": {
+    "preview": "redocly preview-docs",
+    "publish-v1": "redocly bundle --o docs/v1.yaml --ext yaml openapi/v1/v1.yaml && redocly bundle --o docs/v1.json --ext json openapi/v1/v1.yaml",
+    "lint-v1": "redocly lint openapi/v1/v1.yaml",
+    "publish-v2": "redocly bundle --o docs/v2.yaml --ext yaml openapi/v2/v2.yaml && redocly bundle --o docs/v2.json --ext json openapi/v2/v2.yaml",
+    "lint-v2": "redocly lint openapi/v2/v2.yaml" 
+  }
+}

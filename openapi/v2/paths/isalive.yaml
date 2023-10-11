@@ -1,0 +1,17 @@
+get:
+  tags:
+    - isalive
+  summary: API-status
+  description: With this operation you can check to see that the API is up and running.
+  responses:
+    '200':
+      description: OK
+    '503':
+      description: Server Unavailable
+  security:
+    - OAuth2:
+        - foretagsinformation:monitor
+    - default:
+        - foretagsinformation:monitor
+  x-auth-type: Application & Application User
+  x-throttling-tier: null

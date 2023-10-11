@@ -1,0 +1,25 @@
+title: LegalStatus
+type: object
+externalDocs:
+  url: http://uri.suomi.fi/datamodel/ns/agent2#LegalStatus
+  description: agent2#LegalStatus
+description: >-
+  An indication of whether a business register has registered some extraordinary
+  proceedings for the agent
+properties:
+  code:
+    title: Code
+    enum:
+      - NONE
+      - SOME
+    type: string
+  name:
+    title: Name
+    type: string
+    description: |
+      * `NONE`: No extraordinary circumstances registered.
+      * `SOME`: Some extraordinary circumstances registered.
+    example: No extraordinary circumstances registered.
+required:
+  - code
+  - name

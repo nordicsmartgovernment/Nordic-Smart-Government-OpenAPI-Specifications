@@ -1,0 +1,18 @@
+description: Reply with requested financial statement data.
+content:
+  application/json; charset=utf-8:
+    schema:
+      $ref: '../schemas/Facts.yaml'
+    examples:
+      example-1:
+        value:
+          facts:
+            fact_1234:
+              value: "12223000"
+              decimals: -3
+              dimensions:
+                concept: ifrs-full:ProfitLoss
+                entity: urn:lei:763700JIO1LAUZDH9012,
+                period: 2022-01-01T00:00:00/2023-01-01T00:00:00
+                unit: iso4217:EUR
+            

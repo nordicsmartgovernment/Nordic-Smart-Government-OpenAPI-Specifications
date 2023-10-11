@@ -1,0 +1,11 @@
+summary: Information on identity number is not available in this API.
+value:
+  type: urn:orgname:error:validation
+  instance: validation.client
+  status: 400
+  timestamp: '2021-02-03T13:45:16.953149+02:00'
+  requestId: d120654c-0d09-481a-8956-940a76474e6b
+  title: Fel format
+  detail: 'Identitetsbeteckning måste vara 10 eller 12 siffror: A7696151111'
+  code: FM003
+  source: identitetsbeteckning.identitet.id

@@ -1,0 +1,30 @@
+title: Activity
+type: object
+externalDocs:
+  url: http://uri.suomi.fi/datamodel/ns/agent2#Activity
+  description: agent2#Activity
+description: An active deed or action carried out by a registred organisation.
+properties:
+  code:
+    description: NACE code for the activity
+    type: string
+    example: '0112'
+  inClassification:
+    description: >-
+      NACE codes are published in scheme http://data.europa.eu/ux2/nace2/nace2.
+      Description in text for all NACE codes in all EU languages can be found
+      there.
+    type: string
+    example: http://data.europa.eu/ux2/nace2/nace2
+  reference:
+    description: Reference to the description of the NACE code.
+    type: string
+    example: http://data.europa.eu/ux2/nace2/0112
+  sequence:
+    title: sequence
+    description: Sequence for the NACE codes, primary = 1, secondary = 2
+    type: string
+    example: 1
+required:
+  - sequence
+  - code

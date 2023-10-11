@@ -1,0 +1,18 @@
+title: Address
+type: object
+description: >-
+  The registered address is the address, to which formal communications can be
+  sent to the registered organisation. The postal address is the address to
+  which mail can be sent to the registered organisation.
+externalDocs:
+  url: http://uri.suomi.fi/datamodel/ns/agent2#Address
+  description: agent2#Address
+minProperties: 0
+properties:
+  fullAddress:
+    title: fullAddress
+    description: The complete address written as a string, separated with ";".
+    type: string
+    example: Queen Street 1; 23456; City of Gold; Sweden
+required:
+  - fullAddress

@@ -1,0 +1,25 @@
+title: FinancialStatementQuery
+description: Object to request data about a registered organisation.
+type: object
+properties:
+  notation:
+    type: string
+    description: A unique set of characters used to identify the registered organisation. In Sweden this is one of 'organisationsnummer', 'personnummer', 'samordningsnummer' or 'gdNummer'.
+    example: '5512234567'
+  country:
+    type: string
+    description: The country you want request data from. Valid values are 'SE', 'DK', 'NO', 'FI', and 'IS'.
+    example: 'SE'
+    enum:
+      - SE
+      - NO
+      - FI
+      - DK
+  period:
+    type: string
+    description: Period of the financial statements, which can either an year, date or a duration
+    example: '2019'
+required:
+  - notation
+  - country
+  - period

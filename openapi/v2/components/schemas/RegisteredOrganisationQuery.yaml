@@ -1,0 +1,15 @@
+title: RegisteredOrganisationQuery
+required:
+  - notation
+  - country
+type: object
+properties:
+  notation:
+    type: string
+    description: A unique set of characters used to identify the registered organisation. In Sweden this is one of 'organisationsnummer', 'personnummer', 'samordningsnummer' or 'gdNummer'.
+    example: '5512234567'
+  country:
+    type: string
+    description: The country you want request data from. Valid values are 'SE', 'NO', 'FI', and 'IS'.
+    example: 'SE'
+description: Object to request data about a registered organisation.
