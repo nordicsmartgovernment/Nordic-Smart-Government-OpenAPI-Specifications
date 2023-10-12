@@ -11,7 +11,11 @@ rules:
 theme:
   openapi:
     htmlTemplate: ./docs/index.html
+    hideDownloadButton: true
     theme:
+      codeBlock: 
+        backgroundColor: white
+        borderRadius: 0px
       colors:
         primary:
           main: "#32329f"

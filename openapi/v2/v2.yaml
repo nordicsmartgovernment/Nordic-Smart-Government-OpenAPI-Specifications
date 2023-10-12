@@ -11,16 +11,11 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   x-logo:
     url: logo.svg
-  description: >
-    With this API you can retrieve information about registered organisations (includes company, business, sole trader, non-profit association etc). 
-    
-    The API use POST instead of GET because we don't want to display identification number (which can be considered sensitive personal data) in the URL.
-externalDocs:
-  url: http://uri.suomi.fi/datamodel/ns/agent2
-  description: Datamodel for the API
+  description:
+    $ref: ./description.md
 servers:
-  - url: https://example.org/nordicinformation/v1/
-  - url: https://example2.org/nordicinformation/v1/
+  - url: https://example.org/nordicinformation/v1
+  - url: https://example2.org/nordicinformation/v1
 security:
   - OAuth2:
       - orgname:read

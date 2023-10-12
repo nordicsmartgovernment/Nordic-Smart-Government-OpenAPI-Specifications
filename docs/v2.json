@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "version": "1.0.0",
+    "version": "2.0.0",
     "title": "Nordic Governments API - business information",
     "termsOfService": "https://example.com/terms/",
     "contact": {
@@ -15,7 +15,7 @@
     "x-logo": {
       "url": "logo.svg"
     },
-    "description": "With this API you can retrieve information about registered organisations (includes company, business, sole trader, non-profit association etc). \nThe API use POST instead of GET because we don't want to display identification number (which can be considered sensitive personal data) in the URL.\n"
+    "description": "With this API you can retrieve information about registered organisations (includes company, business, sole trader, non-profit association etc). \n\nThe API use POST instead of GET because we don't want to display identification number (which can be considered sensitive personal data) in the URL.\n\n## Links\n\n[Download as YAML](./v1.yaml)\n\n[Download as JSON](./json)\n\n[Datamodel for the API](http://uri.suomi.fi/datamodel/ns/agent2)"
   },
   "servers": [
     {
@@ -49,10 +49,6 @@
       "description": "API to retrieve financial statements for registered organisations."
     }
   ],
-  "externalDocs": {
-    "url": "http://uri.suomi.fi/datamodel/ns/agent2",
-    "description": "Datamodel for the API"
-  },
   "paths": {
     "/v2/registeredorganisations": {
       "post": {

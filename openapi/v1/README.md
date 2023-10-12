@@ -1,5 +1,7 @@
 ## The `openapi` folder
 
+This README contains information for the API specification developers only.
+
 This folder contains your entrypoint `openapi.yaml`.
 
 That file contains references to the entire API definition.
