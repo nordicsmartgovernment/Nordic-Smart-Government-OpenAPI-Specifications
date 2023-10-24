@@ -1,0 +1,46 @@
+title: RegisteredOrganisation
+type: object
+properties:
+  '@context':
+    title: '@context'
+    description: A context is a JSON object that expresses a set of mappings from IRIs to terms.
+    type: string
+    example: https://example.org/context.jsonld
+  '@type':
+    title: '@type'
+    description: The type of the resource.
+    type: string
+    example: RegisteredOrganisation
+  registrationDate:
+    title: registrationDate
+    description: The date when a public authority has registered the registered organisation.
+    type: string
+    format: date
+    example: '2023-01-12'
+  name:
+    title: name
+    description: A word or a combination of characters by which a registered organisation is designated, called, or known.
+    type: string
+    example: Volvo AB
+  identifier:
+    $ref: './Identifier.yaml'
+  registeredAddress:
+    $ref: './Address.yaml'
+  postalAddress:
+    $ref: './Address.yaml'
+  legalForm:
+    $ref: './LegalForm.yaml'
+  activity:
+    title: activity
+    minItems: 0
+    type: array
+    items:
+      $ref: './Activity.yaml'
+  legalStatus:
+    $ref: './LegalStatus.yaml'
+required:
+  - identifier
+  - registrationDate
+  - name
+  - legalStatus
+  - legalForm

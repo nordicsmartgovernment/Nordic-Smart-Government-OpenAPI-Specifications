@@ -1,10 +1,16 @@
 openapi: 3.0.3
 info:
   title: Nordic Governments API - business information
+  termsOfService: https://example.com/terms/
+  contact:
+    email: contact@example.com
+    url: http://example.com/contact
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
   description:
     $ref: ./description.md
-  termsOfService: https://bolagsverket.se
-  version: 1.0.0
+  version: 1.0.1
   x-logo:
     url: logo.svg
 servers:

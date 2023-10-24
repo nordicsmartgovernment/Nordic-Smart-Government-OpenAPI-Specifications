@@ -5,7 +5,31 @@ properties:
     type: string
     description: Provides the meaning for the fact. The value of the concept property is a URI from XBRL taxonomy that identifies the concept.
     format: uri
-    example: ifrs-full:ProfitLoss
+    example: bach:NetTurnover
+    enum:
+      - bach:NetTurnover
+      - bach:VariationInStocksOfFinishedGoodsAndWorkInProgress
+      - bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised
+      - bach:OtherOperatingIncome
+      - bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised
+      - bach:OtherExternalCharges
+      - xebr:StaffCostsPresentation
+      - xebr:WagesAndSalaries
+      - xebr:SocialSecurityCosts
+      - xebr:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsPresentation
+      - xebr:ValueAdjustementsInRespectOfFormationExpensesAndOfTangibleAndIntangibleFixedAssets
+      - xebr:ValueAdjustementsInRespectOfCurrentAssetsToTheExtendThatTheyExceedTheAmountOfValueAdjusmentsWhichAreNormalInTheUndertakingConcerned
+      - xebr:OtherOperatingExpensesPresentation
+      - bach:FinancialIncomeTotal
+      - xebr:IncomeFromOtherInvestmentsAndLoansFormingPartOfTheFixedAssets
+      - xebr:IncomeFromOtherInvestmentsAndLoansFormingPartOfTheFixedAssetsOfWhichDerivedFromAffiliatedUndertakings
+      - xebr:OtherInterestReceivableAndSimilarIncome
+      - xebr:ValueAdjustmentsInRespectOfFinancialAssetsAndOfInvestmentsHeldAsCurrentAssets
+      - xebr:InterestPayableAndSimilarExpenses
+      - bach:TaxOnProfitOrLoss
+      - bach:ProfitOrLossAfterTaxation
+      - xebr:OtherTaxes
+      - xebr:ProfitLossForTheFinancialYearTotal
   entity:
     type: string
     description: Specifies the entity to which the fact relates. Preferred identifier is the LEI code.

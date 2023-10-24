@@ -3,6 +3,7 @@ post:
     - nordicinformation
   summary: Retrieve data about a registered organisation
   description: With this operation you can retrieve data about a registered organisation.
+  operationId: registeredOrganisations
   parameters:
     - name: X-Request-Id
       in: header
@@ -45,9 +46,7 @@ post:
       description: Registered organisation data is missing.
       $ref: '../components/responses/ErrorResponse.yaml'
   security:
-    - OAuth2:
-        - foretagsinformation:read
-    - default:
+    - main_auth:
         - foretagsinformation:read
   x-auth-type: Application & Application User
   x-throttling-tier: null

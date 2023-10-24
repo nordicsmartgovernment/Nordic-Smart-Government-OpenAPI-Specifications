@@ -14,19 +14,15 @@ info:
   description:
     $ref: ./description.md
 servers:
-  - url: https://example.org/nordicinformation/v1
-  - url: https://example2.org/nordicinformation/v1
+  - url: https://example.org/nsg/v2
 security:
-  - OAuth2:
+  - main_auth:
       - orgname:read
-  - BearerToken: []
 tags:
   - name: nordicinformation
     description: API to retrieve data about registered organisations.
   - name: isalive
     description: API to control the status of the service.
-  - name: financialstatements
-    description: API to retrieve financial statements for registered organisations.
 paths:
   /v2/registeredorganisations:
     $ref: paths/registeredorganisations.yaml

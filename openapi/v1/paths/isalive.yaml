@@ -8,6 +8,8 @@ get:
       description: OK
     '503':
       description: Server Unavailable
+    '403':
+      description: Forbidden
   security:
     - OAuth2:
         - foretagsinformation:monitor

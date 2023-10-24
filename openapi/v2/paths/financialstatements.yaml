@@ -1,8 +1,9 @@
 post:
   tags:
-    - financialstatements
+    - nordicinformation
   summary: Retrieve financial statement for the organisation
   description: With this operation you can retrieve financial statement for the organisation.
+  operationId: financialStatements
   parameters:
     - name: X-Request-Id
       in: header
@@ -45,9 +46,7 @@ post:
       description: Financial statement data is missing.
       $ref: '../components/responses/ErrorResponse.yaml'
   security:
-    - OAuth2:
-        - foretagsinformation:read
-    - default:
+    - main_auth:
         - foretagsinformation:read
   x-auth-type: Application & Application User
   x-throttling-tier: null

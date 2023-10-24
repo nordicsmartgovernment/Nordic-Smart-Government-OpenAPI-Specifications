@@ -1,6 +1,13 @@
 openapi: 3.0.3
 info:
   title: Nordic Governments API - business information
+  termsOfService: https://example.com/terms/
+  contact:
+    email: contact@example.com
+    url: http://example.com/contact
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
   description: |-
     With this API you can retrieve information about registered organisations (includes company, business, sole trader, non-profit association etc). 
 
@@ -13,8 +20,7 @@ info:
     [Download as JSON](./json)
 
     [Datamodel for the API](http://uri.suomi.fi/datamodel/ns/agent2)
-  termsOfService: https://bolagsverket.se
-  version: 1.0.0
+  version: 1.0.1
   x-logo:
     url: logo.svg
 servers:
@@ -106,6 +112,8 @@ paths:
       responses:
         '200':
           description: OK
+        '403':
+          description: Forbidden
         '503':
           description: Server Unavailable
       security:

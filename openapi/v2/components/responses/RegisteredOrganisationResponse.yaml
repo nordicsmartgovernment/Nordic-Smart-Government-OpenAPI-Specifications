@@ -1,5 +1,9 @@
 description: Reply with requested company data.
-content:
-  application/json; charset=utf-8:
+content: 
+  application/json:
     schema:
-      $ref: '../schemas/RegisteredOrganisation.yaml'
+      $ref: '../../components/schemas/RegisteredOrganisation.yaml'
+  application/json-ld:
+    schema: 
+      $ref: '../../components/schemas/RegisteredOrganisationInLinkedData.yaml'
+      

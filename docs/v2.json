@@ -15,24 +15,18 @@
     "x-logo": {
       "url": "logo.svg"
     },
-    "description": "With this API you can retrieve information about registered organisations (includes company, business, sole trader, non-profit association etc). \n\nThe API use POST instead of GET because we don't want to display identification number (which can be considered sensitive personal data) in the URL.\n\n## Links\n\n[Download as YAML](./v1.yaml)\n\n[Download as JSON](./json)\n\n[Datamodel for the API](http://uri.suomi.fi/datamodel/ns/agent2)"
+    "description": "With this API you can retrieve information about registered organisations (includes company, business, sole trader, non-profit association etc). \n\nThe API use POST instead of GET because we don't want to display identification number (which can be considered sensitive personal data) in the URL.\n\n### Links\n\n[Download as YAML](./v1.yaml)\n\n[Download as JSON](./json)\n\n[Datamodel for the API](http://uri.suomi.fi/datamodel/ns/agent2)"
   },
   "servers": [
     {
-      "url": "https://example.org/nordicinformation/v1/"
-    },
-    {
-      "url": "https://example2.org/nordicinformation/v1/"
+      "url": "https://example.org/nsg/v2"
     }
   ],
   "security": [
     {
-      "OAuth2": [
+      "main_auth": [
         "orgname:read"
       ]
-    },
-    {
-      "BearerToken": []
     }
   ],
   "tags": [
@@ -43,10 +37,6 @@
     {
       "name": "isalive",
       "description": "API to control the status of the service."
-    },
-    {
-      "name": "financialstatements",
-      "description": "API to retrieve financial statements for registered organisations."
     }
   ],
   "paths": {
@@ -57,6 +47,7 @@
         ],
         "summary": "Retrieve data about a registered organisation",
         "description": "With this operation you can retrieve data about a registered organisation.",
+        "operationId": "registeredOrganisations",
         "parameters": [
           {
             "name": "X-Request-Id",
@@ -117,12 +108,7 @@
         },
         "security": [
           {
-            "OAuth2": [
-              "foretagsinformation:read"
-            ]
-          },
-          {
-            "default": [
+            "main_auth": [
               "foretagsinformation:read"
             ]
           }
@@ -136,10 +122,42 @@
         "tags": [
           "nordicinformation"
         ],
-        "description": "With this operation you can retrieve information about the organisation.",
+        "description": "Get basic information about a registered organisation using URI identifier. Note that URI identifier should never change. If there ever is a need to change the domain for the API gateway, original domain should still remain for redirecting the request by using permantly moved (301) response to the identifier API.",
+        "summary": "Get organisation by id",
+        "operationId": "getId",
+        "parameters": [
+          {
+            "name": "brisid",
+            "in": "path",
+            "description": "The identifier of the organisation.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": 5560360793
+          },
+          {
+            "name": "accept",
+            "in": "query",
+            "description": "Optional parameter for response format. Should be supported also using header-parameter. Defaults to application/json. Alternatively application/json-ld can be used.",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/RegisteredOrganisationResponse"
+          },
+          "400": {
+            "description": "Wrong format on identifier.",
+            "$ref": "#/components/responses/ErrorResponse"
           }
         }
       }
@@ -151,9 +169,13 @@
         ],
         "summary": "API-status",
         "description": "With this operation you can check to see that the API is up and running.",
+        "operationId": "isAlive",
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "503": {
             "description": "Server Unavailable"
@@ -161,12 +183,7 @@
         },
         "security": [
           {
-            "OAuth2": [
-              "foretagsinformation:monitor"
-            ]
-          },
-          {
-            "default": [
+            "main_auth": [
               "foretagsinformation:monitor"
             ]
           }
@@ -178,10 +195,11 @@
     "/v2/financialstatements": {
       "post": {
         "tags": [
-          "financialstatements"
+          "nordicinformation"
         ],
         "summary": "Retrieve financial statement for the organisation",
         "description": "With this operation you can retrieve financial statement for the organisation.",
+        "operationId": "financialStatements",
         "parameters": [
           {
             "name": "X-Request-Id",
@@ -242,12 +260,7 @@
         },
         "security": [
           {
-            "OAuth2": [
-              "foretagsinformation:read"
-            ]
-          },
-          {
-            "default": [
+            "main_auth": [
               "foretagsinformation:read"
             ]
           }
@@ -687,6 +700,67 @@
           "legalForm"
         ]
       },
+      "RegisteredOrganisationInLinkedData": {
+        "title": "RegisteredOrganisation",
+        "type": "object",
+        "properties": {
+          "@context": {
+            "title": "@context",
+            "description": "A context is a JSON object that expresses a set of mappings from IRIs to terms.",
+            "type": "string",
+            "example": "https://example.org/context.jsonld"
+          },
+          "@type": {
+            "title": "@type",
+            "description": "The type of the resource.",
+            "type": "string",
+            "example": "RegisteredOrganisation"
+          },
+          "registrationDate": {
+            "title": "registrationDate",
+            "description": "The date when a public authority has registered the registered organisation.",
+            "type": "string",
+            "format": "date",
+            "example": "2023-01-12"
+          },
+          "name": {
+            "title": "name",
+            "description": "A word or a combination of characters by which a registered organisation is designated, called, or known.",
+            "type": "string",
+            "example": "Volvo AB"
+          },
+          "identifier": {
+            "$ref": "#/components/schemas/Identifier"
+          },
+          "registeredAddress": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "postalAddress": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "legalForm": {
+            "$ref": "#/components/schemas/LegalForm"
+          },
+          "activity": {
+            "title": "activity",
+            "minItems": 0,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Activity"
+            }
+          },
+          "legalStatus": {
+            "$ref": "#/components/schemas/LegalStatus"
+          }
+        },
+        "required": [
+          "identifier",
+          "registrationDate",
+          "name",
+          "legalStatus",
+          "legalForm"
+        ]
+      },
       "ApiError": {
         "title": "ApiError",
         "type": "object",
@@ -837,9 +911,14 @@
       "RegisteredOrganisationResponse": {
         "description": "Reply with requested company data.",
         "content": {
-          "application/json; charset=utf-8": {
+          "application/json": {
             "schema": {
               "$ref": "#/components/schemas/RegisteredOrganisation"
+            }
+          },
+          "application/json-ld": {
+            "schema": {
+              "$ref": "#/components/schemas/RegisteredOrganisationInLinkedData"
             }
           }
         }

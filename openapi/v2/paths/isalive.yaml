@@ -3,15 +3,16 @@ get:
     - isalive
   summary: API-status
   description: With this operation you can check to see that the API is up and running.
+  operationId: isAlive
   responses:
     '200':
       description: OK
     '503':
       description: Server Unavailable
+    '403':
+      description: Forbidden
   security:
-    - OAuth2:
-        - foretagsinformation:monitor
-    - default:
+    - main_auth:
         - foretagsinformation:monitor
   x-auth-type: Application & Application User
   x-throttling-tier: null
