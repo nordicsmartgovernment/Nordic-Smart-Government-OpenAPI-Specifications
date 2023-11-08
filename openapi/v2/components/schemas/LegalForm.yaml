@@ -3,7 +3,7 @@ type: object
 externalDocs:
   url: http://uri.suomi.fi/datamodel/ns/agent2#LegalForm
   description: agent2#LegalForm
-description: The legal form of a registered organisation.
+description: The legal form of a legal entity.
 properties:
   code:
     title: Code

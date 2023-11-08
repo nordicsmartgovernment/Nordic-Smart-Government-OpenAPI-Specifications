@@ -1,9 +1,9 @@
 post:
   tags:
     - nordicinformation
-  summary: Retrieve data about a registered organisation
-  description: With this operation you can retrieve data about a registered organisation.
-  operationId: registeredOrganisations
+  summary: Retrieve data about a legal entity
+  description: With this operation you can retrieve data about a legal entity.
+  operationId: legalEntities
   parameters:
     - name: X-Request-Id
       in: header
@@ -15,10 +15,10 @@ post:
         type: string
       example: d120654c-0d09-481a-8956-940a76474e6b
   requestBody:
-      $ref: '../components/requestBodies/RegisteredOrganisationRequest.yaml'
+      $ref: '../components/requestBodies/LegalEntityRequest.yaml'
   responses:
     '200':
-      $ref: '../components/responses/RegisteredOrganisationResponse.yaml'
+      $ref: '../components/responses/LegalEntityResponse.yaml'
     '400':
       description: Wrong format on identifier.
       $ref: '../components/responses/ErrorResponse.yaml'
@@ -43,7 +43,7 @@ post:
             type: string
           example: d120654c-0d09-481a-8956-940a76474e6b
     '404':
-      description: Registered organisation data is missing.
+      description: Legal entity data is missing.
       $ref: '../components/responses/ErrorResponse.yaml'
   security:
     - main_auth:

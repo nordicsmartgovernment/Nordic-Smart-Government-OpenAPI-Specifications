@@ -1,5 +1,0 @@
-    description: An object to specify `notation` (a unique set of characters used to identify the registered organisation) and `country` (the country you want request data from).
-    content:
-      application/json:
-        schema:
-          $ref: '../schemas/RegisteredOrganisationQuery.yaml'

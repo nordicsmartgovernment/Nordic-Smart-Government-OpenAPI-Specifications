@@ -1,25 +1,15 @@
-title: RegisteredOrganisation
+title: LegalEntity
 type: object
 properties:
-  '@context':
-    title: '@context'
-    description: A context is a JSON object that expresses a set of mappings from IRIs to terms.
-    type: string
-    example: https://example.org/context.jsonld
-  '@type':
-    title: '@type'
-    description: The type of the resource.
-    type: string
-    example: RegisteredOrganisation
   registrationDate:
     title: registrationDate
-    description: The date when a public authority has registered the registered organisation.
+    description: The date when a public authority has registered the legal entity.
     type: string
     format: date
     example: '2023-01-12'
   name:
     title: name
-    description: A word or a combination of characters by which a registered organisation is designated, called, or known.
+    description: A word or a combination of characters by which a legal entity is designated, called, or known.
     type: string
     example: Volvo AB
   identifier:

@@ -1,10 +1,10 @@
 title: FinancialStatementQuery
-description: Object to request data about a registered organisation.
+description: Object to request data about a legal entity.
 type: object
 properties:
   notation:
     type: string
-    description: A unique set of characters used to identify the registered organisation. In Sweden this is one of 'organisationsnummer', 'personnummer', 'samordningsnummer' or 'gdNummer'.
+    description: A unique set of characters used to identify the legal entity. In Sweden this is one of 'organisationsnummer', 'personnummer', 'samordningsnummer' or 'gdNummer'.
     example: '5512234567'
   country:
     type: string

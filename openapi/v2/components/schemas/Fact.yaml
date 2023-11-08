@@ -1,0 +1,22 @@
+description: Represents the financial fact. See also https://www.xbrl.org/Specification/xbrl-json/REC-2021-10-13/xbrl-json-REC-2021-10-13.html#component-fact
+properties:
+  value:
+    type: string
+    example: '12223000'
+    description: Value of the fact encoded according to XBRRL-JSON specification
+  decimals:
+    type: number
+    example: -3
+    description: Description of accuracy of amount as integer or absent if the value is infinitely precise. -6 means accurate to millions. -3 means accurate to thousands. -2 means accurate to hundreds. 0 means accurate to units. 2 means accurate to cents. 4 means accurate to a hundreth of a percentage point (Basis point).
+    enum:
+      - -6
+      - -3
+      - -2
+      - 0
+      - 2
+      - 4
+  dimensions:
+    $ref: './Dimensions.yaml'
+required:
+  - value
+  - dimensions

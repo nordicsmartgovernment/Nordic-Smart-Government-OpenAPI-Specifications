@@ -1,0 +1,24 @@
+properties:
+  documentType:
+    type: string
+    description: The type of the document. Always https://xbrl.org/2021/xbrl-json.
+  features:
+    type: object
+    description: A set of features supported by the document.
+    properties:
+      xbrl:canonicalValues:
+        type: boolean
+        description: If true, the document contains canonical values.
+  namespaces:
+    type: object
+    description: A set of namespaces used in the document.
+    additionalProperties:
+      type: string
+      x-additionalPropertiesName: prefix
+  taxonomy:
+    type: array
+    description: A set of taxonomy files used in the document.
+    items:
+      type: string
+      format: uri
+      description: URI of the taxonomy file.

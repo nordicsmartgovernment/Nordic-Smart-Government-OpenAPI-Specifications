@@ -6,13 +6,22 @@ content:
     examples:
       example-1:
         value:
+          documentInfo:
+            documentType: https://xbrl.org/2021/xbrl-json
+            features:
+              xbrl:canonicalValues: true
+            namespaces:
+              bach: http://www.irisbusiness.com/taxonomy/eu/elts/bach
+              xebr: http://www.irisbusiness.com/taxonomy/eu/elts/xebr
+              iso4217: http://www.xbrl.org/2003/iso4217
+              xbrl: https://xbrl.org/2021
+              xbrli: http://www.xbrl.org/2003/instance
           facts:
             fact_1234:
               value: "12223000"
               decimals: -3
               dimensions:
-                concept: ifrs-full:ProfitLoss
+                concept: bach:NetTurnover
                 entity: urn:lei:763700JIO1LAUZDH9012,
                 period: 2022-01-01T00:00:00/2023-01-01T00:00:00
                 unit: iso4217:EUR
-            

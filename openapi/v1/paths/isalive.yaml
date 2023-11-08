@@ -3,6 +3,7 @@ get:
     - isalive
   summary: API-status
   description: With this operation you can check to see that the API is up and running.
+  operationId: isalive
   responses:
     '200':
       description: OK

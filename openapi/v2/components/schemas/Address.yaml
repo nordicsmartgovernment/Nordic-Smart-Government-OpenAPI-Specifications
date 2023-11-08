@@ -1,6 +1,6 @@
 title: Address
 type: object
-description: The registered address is the address, to which formal communications can be sent to the registered organisation. The postal address is the address to which mail can be sent to the registered organisation. 
+description: The registered address is the address, to which formal communications can be sent to the legal entity. The postal address is the address to which mail can be sent to the legal entity. 
 externalDocs:
   url: http://uri.suomi.fi/datamodel/ns/agent2#Address
   description: agent2#Address

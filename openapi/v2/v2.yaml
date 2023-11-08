@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   version: 2.0.0
-  title: Nordic Governments API - business information 
+  title: Nordic Smart Government and Business API 
   termsOfService: https://example.com/terms/
   contact:
     email: contact@example.com
@@ -14,20 +14,20 @@ info:
   description:
     $ref: ./description.md
 servers:
-  - url: https://example.org/nsg/v2
+  - url: https://example.org/nsgb
 security:
   - main_auth:
       - orgname:read
 tags:
   - name: nordicinformation
-    description: API to retrieve data about registered organisations.
+    description: API to retrieve data about legal entities.
   - name: isalive
     description: API to control the status of the service.
 paths:
-  /v2/registeredorganisations:
-    $ref: paths/registeredorganisations.yaml
-  /id/{brisid}:
-    $ref: paths/id/bris.yaml
+  /v2/legalEntities:
+    $ref: paths/legalentity.yaml
+  /id/{identifier}:
+    $ref: paths/id/identifier.yaml
   /v2/isalive:
     $ref: paths/isalive.yaml
   /v2/financialstatements:

@@ -1,0 +1,28 @@
+get:
+  tags:
+    - nordicinformation
+  description: Get basic information about a legal entity using URI identifier. Note that URI identifier should not change over time, meaning that this API path should be version independent. If there ever is a need to change the path or domain for the API gateway, original domain and path should still remain for redirecting the request by using permantly moved (301) response to the original domain and path.
+  summary: Get organisation by id
+  operationId: getId
+  parameters: 
+    - name: identifier
+      in: path
+      description: The identifier of the legal entity.
+      required: true
+      schema:
+        type: string
+      example: 5560360793
+    - name: accept
+      in: header
+      description: Defaults to application/json. Alternatively application/json-ld can be used.
+      required: false
+      schema:
+        type: string
+      example: application/json+ld  
+  responses:
+    '200':
+      $ref: '../../components/responses/LegalEntityResponse.yaml'
+    '400':
+      description: Wrong format on identifier.
+      $ref: '../../components/responses/ErrorResponse.yaml'
+  
