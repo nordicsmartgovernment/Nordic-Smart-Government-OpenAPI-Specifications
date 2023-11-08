@@ -10,7 +10,7 @@ properties:
     title: '@type'
     description: The type of the resource.
     type: string
-    example: RegisteredOrganisation
+    example: LegalEntity
   registrationDate:
     title: registrationDate
     description: The date when a public authority has registered the legal entity.
