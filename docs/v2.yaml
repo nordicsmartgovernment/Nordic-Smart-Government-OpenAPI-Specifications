@@ -12,7 +12,7 @@ info:
   x-logo:
     url: logo.svg
   description: |-
-    With this API you can retrieve information about registered organisations (includes company, business, sole trader, non-profit association etc). 
+    With this API you can retrieve information about legal entities (includes company, business, sole trader, non-profit association etc). 
 
     The API use POST instead of GET because we don't want to display identification number (which can be considered sensitive personal data) in the URL.
 
@@ -226,8 +226,8 @@ components:
       type: object
       description: A unique set of characters used to identify the legal entity.
       externalDocs:
-        url: http://uri.suomi.fi/datamodel/ns/agent2#Identifier
-        description: agent2#Identifier
+        url: http://uri.suomi.fi/datamodel/ns/nsgb#Identifier
+        description: nsgb:Identifier
       properties:
         issuingAuthorityName:
           title: issuingAuthorityName
@@ -247,8 +247,8 @@ components:
       type: object
       description: The registered address is the address, to which formal communications can be sent to the legal entity. The postal address is the address to which mail can be sent to the legal entity.
       externalDocs:
-        url: http://uri.suomi.fi/datamodel/ns/agent2#Address
-        description: agent2#Address
+        url: http://uri.suomi.fi/datamodel/ns/nsgb#Address
+        description: nsgb:Address
       minProperties: 0
       properties:
         fullAddress:
@@ -262,8 +262,8 @@ components:
       title: LegalForm
       type: object
       externalDocs:
-        url: http://uri.suomi.fi/datamodel/ns/agent2#LegalForm
-        description: agent2#LegalForm
+        url: http://uri.suomi.fi/datamodel/ns/nsgb#LegalForm
+        description: nsgb:LegalForm
       description: The legal form of a legal entity.
       properties:
         code:
@@ -483,8 +483,8 @@ components:
       title: Activity
       type: object
       externalDocs:
-        url: http://uri.suomi.fi/datamodel/ns/agent2#Activity
-        description: agent2#Activity
+        url: http://uri.suomi.fi/datamodel/ns/nsgb#Activity
+        description: nsgb:Activity
       description: An active deed or action carried out by a registred organisation.
       properties:
         notation:
@@ -511,8 +511,8 @@ components:
       title: Legal status
       type: object
       externalDocs:
-        url: http://uri.suomi.fi/datamodel/ns/agent2#LegalStatus
-        description: agent2#LegalStatus
+        url: http://uri.suomi.fi/datamodel/ns/nsgb#LegalStatus
+        description: nsgb:LegalStatus
       description: An indication of whether a business register has registered some extraordinary proceedings for the agent
       properties:
         code:
@@ -576,7 +576,7 @@ components:
           title: '@type'
           description: The type of the resource.
           type: string
-          example: RegisteredOrganisation
+          example: LegalEntity
         registrationDate:
           title: registrationDate
           description: The date when a public authority has registered the legal entity.
@@ -715,6 +715,14 @@ components:
             xbrl:canonicalValues:
               type: boolean
               description: If true, the document contains canonical values.
+            xbrl:allowedDuplicates:
+              type: string
+              description: This feature allows an xBRL-JSON document to declare what classes of duplicate facts, if any, are permitted in the report.
+              enum:
+                - none
+                - complete
+                - consistent
+                - all
         namespaces:
           type: object
           description: A set of namespaces used in the document.
@@ -759,6 +767,7 @@ components:
             - bach:ProfitOrLossAfterTaxation
             - xebr:OtherTaxes
             - xebr:ProfitLossForTheFinancialYearTotal
+            - xbrl:note
         entity:
           type: string
           description: Specifies the entity to which the fact relates. Preferred identifier is the LEI code.
@@ -937,8 +946,30 @@ components:
         noteId:
           type: string
           description: A reference to a note that provides additional information about the fact.
+        language:
+          type: string
+          description: The language of the note.
+          enum:
+            - fi
+            - sv
+            - da
+            - 'no'
+            - is
+            - en
       required:
         - concept
+    Footnote:
+      description: List of footnotes.
+      properties:
+        _:
+          type: array
+          items:
+            type: string
+    Links:
+      description: Related links to other facts and footnotes.
+      properties:
+        footnote:
+          $ref: '#/components/schemas/Footnote'
     Fact:
       description: Represents the financial fact. See also https://www.xbrl.org/Specification/xbrl-json/REC-2021-10-13/xbrl-json-REC-2021-10-13.html#component-fact
       properties:
@@ -959,6 +990,8 @@ components:
             - 4
         dimensions:
           $ref: '#/components/schemas/Dimensions'
+        links:
+          $ref: '#/components/schemas/Links'
       required:
         - value
         - dimensions
@@ -1015,6 +1048,7 @@ components:
                   documentType: https://xbrl.org/2021/xbrl-json
                   features:
                     xbrl:canonicalValues: true
+                    xbrl:allowedDuplicates: all
                   namespaces:
                     bach: http://www.irisbusiness.com/taxonomy/eu/elts/bach
                     xebr: http://www.irisbusiness.com/taxonomy/eu/elts/xebr
@@ -1030,3 +1064,13 @@ components:
                       entity: urn:lei:763700JIO1LAUZDH9012,
                       period: 2022-01-01T00:00:00/2023-01-01T00:00:00
                       unit: iso4217:EUR
+                    links:
+                      footnote:
+                        _:
+                          - fact_1235
+                  fact_1235:
+                    value: This is a footnote describing the fact.
+                    dimensions:
+                      concept: xbrl:note
+                      noteId: fact_1235
+                      language: en

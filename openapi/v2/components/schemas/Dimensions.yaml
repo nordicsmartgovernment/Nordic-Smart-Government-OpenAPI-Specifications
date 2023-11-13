@@ -28,6 +28,7 @@ properties:
       - bach:ProfitOrLossAfterTaxation
       - xebr:OtherTaxes
       - xebr:ProfitLossForTheFinancialYearTotal
+      - xbrl:note
   entity:
     type: string
     description: Specifies the entity to which the fact relates. Preferred identifier is the LEI code.
@@ -206,5 +207,15 @@ properties:
   noteId:
     type: string
     description: A reference to a note that provides additional information about the fact.
+  language:
+    type: string
+    description: The language of the note.
+    enum: 
+      - fi
+      - sv
+      - da
+      - no
+      - is
+      - en
 required:
   - concept

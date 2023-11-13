@@ -9,6 +9,14 @@ properties:
       xbrl:canonicalValues:
         type: boolean
         description: If true, the document contains canonical values.
+      xbrl:allowedDuplicates:
+        type: string
+        description: This feature allows an xBRL-JSON document to declare what classes of duplicate facts, if any, are permitted in the report.
+        enum:
+          - none
+          - complete
+          - consistent
+          - all
   namespaces:
     type: object
     description: A set of namespaces used in the document.

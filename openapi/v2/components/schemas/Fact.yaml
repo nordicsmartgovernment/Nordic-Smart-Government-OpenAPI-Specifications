@@ -17,6 +17,8 @@ properties:
       - 4
   dimensions:
     $ref: './Dimensions.yaml'
+  links:
+    $ref: './Links.yaml'
 required:
   - value
   - dimensions

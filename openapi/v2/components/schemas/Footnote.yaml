@@ -1,0 +1,6 @@
+description: "List of footnotes."
+properties: 
+  _:
+    type: array
+    items:
+      type: string

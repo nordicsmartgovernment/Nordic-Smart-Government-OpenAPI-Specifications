@@ -1,0 +1,4 @@
+description: "Related links to other facts and footnotes."
+properties:
+  footnote:
+    $ref: './Footnote.yaml'
