@@ -1128,22 +1128,12 @@
           "concept"
         ]
       },
-      "Footnote": {
-        "description": "List of footnotes.",
-        "properties": {
-          "_": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
       "Links": {
         "description": "Related links to other facts and footnotes.",
-        "properties": {
-          "footnote": {
-            "$ref": "#/components/schemas/Footnote"
+        "additionalProperties": {
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         }
       },
@@ -1172,7 +1162,9 @@
             "$ref": "#/components/schemas/Dimensions"
           },
           "links": {
-            "$ref": "#/components/schemas/Links"
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Links"
+            }
           }
         },
         "required": [

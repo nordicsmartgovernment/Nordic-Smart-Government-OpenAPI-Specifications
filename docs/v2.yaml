@@ -958,18 +958,12 @@ components:
             - en
       required:
         - concept
-    Footnote:
-      description: List of footnotes.
-      properties:
-        _:
-          type: array
-          items:
-            type: string
     Links:
       description: Related links to other facts and footnotes.
-      properties:
-        footnote:
-          $ref: '#/components/schemas/Footnote'
+      additionalProperties:
+        type: array
+        items:
+          type: string
     Fact:
       description: Represents the financial fact. See also https://www.xbrl.org/Specification/xbrl-json/REC-2021-10-13/xbrl-json-REC-2021-10-13.html#component-fact
       properties:
@@ -991,7 +985,8 @@ components:
         dimensions:
           $ref: '#/components/schemas/Dimensions'
         links:
-          $ref: '#/components/schemas/Links'
+          additionalProperties:
+            $ref: '#/components/schemas/Links'
       required:
         - value
         - dimensions
