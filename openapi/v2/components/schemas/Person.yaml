@@ -1,0 +1,18 @@
+title: Person
+type: object
+description: A individual human being who may be dead or alive, but not imaginary.
+externalDocs: 
+  url: http://uri.suomi.fi/datamodel/ns/nsgb#Person
+  description: nsgb:Person
+properties:
+  fullName:
+    title: Full name
+    description: The complete name of the Person as one string.
+    type: string
+  dateOfBirth:
+    title: Date of birth
+    description: The point in time on which the Person was born. Persons can be registered with a membership in a legal entity whithout a identifier being a national registration number.
+    type: string
+    format: date
+  identifier:
+    $ref: './Identifier.yaml'

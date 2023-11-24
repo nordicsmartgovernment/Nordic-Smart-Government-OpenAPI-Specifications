@@ -1,0 +1,7 @@
+description: API error
+content:
+  application/json; charset=utf-8:
+    schema:
+      $ref: '../schemas/ApiError.yaml'
+    examples:
+      $ref: '../examples/not-found.yaml'

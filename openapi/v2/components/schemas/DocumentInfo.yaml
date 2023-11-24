@@ -1,3 +1,8 @@
+title: DocumentInfo
+type: object
+description: The document info object contains metadata information necessary to correctly process the rest of the document.
+externalDocs: 
+  url: https://www.xbrl.org/Specification/xbrl-json/CR-2021-07-07/xbrl-json-CR-2021-07-07.html#component-document-info
 properties:
   documentType:
     type: string

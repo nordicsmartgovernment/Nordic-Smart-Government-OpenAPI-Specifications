@@ -1,0 +1,19 @@
+title: Signatory Rule
+type: object
+description: Rules that dictates how signatory rights are to be used and each rule grants representation power
+externalDocs: 
+  url: http://uri.suomi.fi/datamodel/ns/nsgb#SignatoryRule
+  description: nsgb:SignatoryRule
+properties:
+  code:
+    title: Code
+    description: The code of the signatory rule
+    type: string
+    enum:
+      - ALONE
+      - JOINTLY
+      - UNEXPLICIT
+  requirements:
+    title: Membership requirements
+    description: Required number and type of memberships in a legal entity for signatory rules
+    $ref: './MembershipRequirements.yaml'

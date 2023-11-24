@@ -40,6 +40,36 @@
     }
   ],
   "paths": {
+    "/v2/isalive": {
+      "get": {
+        "tags": [
+          "isalive"
+        ],
+        "summary": "API-status",
+        "description": "With this operation you can check to see that the API is up and running.",
+        "operationId": "isAlive",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "503": {
+            "description": "Server Unavailable"
+          }
+        },
+        "security": [
+          {
+            "main_auth": [
+              "foretagsinformation:monitor"
+            ]
+          }
+        ],
+        "x-auth-type": "Application & Application User",
+        "x-throttling-tier": null
+      }
+    },
     "/v2/legalEntities": {
       "post": {
         "tags": [
@@ -158,34 +188,49 @@
         }
       }
     },
-    "/v2/isalive": {
-      "get": {
+    "/v2/signatoryRights": {
+      "post": {
         "tags": [
-          "isalive"
+          "nordicinformation"
         ],
-        "summary": "API-status",
-        "description": "With this operation you can check to see that the API is up and running.",
-        "operationId": "isAlive",
+        "summary": "Retrieve information about organisations signatory rights",
+        "description": "With this operation you can retrieve information about organisations signatory rights.",
+        "operationId": "signatoryRights",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Client generated ID to call the API. In case of error this will be sent in the attribute `requestId` or as a header attribute.",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "d120654c-0d09-481a-8956-940a76474e6b"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SignatoryRightsRequest"
+        },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "$ref": "#/components/responses/SignatoryRightsResponse"
           },
-          "403": {
-            "description": "Forbidden"
+          "400": {
+            "description": "Bad request",
+            "$ref": "#/components/responses/ErrorResponse"
           },
-          "503": {
-            "description": "Server Unavailable"
+          "401": {
+            "description": "Unauthorized",
+            "$ref": "#/components/responses/ErrorResponse"
+          },
+          "404": {
+            "description": "Not found",
+            "$ref": "#/components/responses/ErrorResponse"
           }
-        },
-        "security": [
-          {
-            "main_auth": [
-              "foretagsinformation:monitor"
-            ]
-          }
-        ],
-        "x-auth-type": "Application & Application User",
-        "x-throttling-tier": null
+        }
       }
     },
     "/v2/financialstatements": {
@@ -293,10 +338,7 @@
     "schemas": {
       "LegalEntityQuery": {
         "title": "LegalEntityQuery",
-        "required": [
-          "notation",
-          "country"
-        ],
+        "description": "Object to request data about a legal entity.",
         "type": "object",
         "properties": {
           "notation": {
@@ -310,7 +352,10 @@
             "example": "SE"
           }
         },
-        "description": "Object to request data about a legal entity."
+        "required": [
+          "notation",
+          "country"
+        ]
       },
       "Identifier": {
         "title": "Identifier",
@@ -336,7 +381,7 @@
         },
         "required": [
           "issuingAuthorityName",
-          "organisationRegistrationNumber"
+          "notation"
         ]
       },
       "Address": {
@@ -650,6 +695,11 @@
       "LegalEntity": {
         "title": "LegalEntity",
         "type": "object",
+        "description": "Legal Entity (includes company, business, sole trader, non-profit association etc) that is registered with a business registration authority or other public authorithy.",
+        "externalDocs": {
+          "url": "http://uri.suomi.fi/datamodel/ns/nsgb#LegalEntity",
+          "description": "nsgb:LegalEntity"
+        },
         "properties": {
           "registrationDate": {
             "title": "registrationDate",
@@ -699,6 +749,11 @@
       "LegalEntityInLinkedData": {
         "title": "LegalEntity",
         "type": "object",
+        "description": "Legal Entity (includes company, business, sole trader, non-profit association etc) that is registered with a business registration authority or other public authorithy.",
+        "externalDocs": {
+          "url": "http://uri.suomi.fi/datamodel/ns/nsgb#LegalEntity",
+          "description": "nsgb:LegalEntity"
+        },
         "properties": {
           "@context": {
             "title": "@context",
@@ -816,6 +871,166 @@
           "type"
         ]
       },
+      "SignatoryRightsQuery": {
+        "title": "Signatory rights query",
+        "description": "Object to request data about a legal entity.",
+        "required": [
+          "notation",
+          "country"
+        ],
+        "type": "object",
+        "properties": {
+          "notation": {
+            "type": "string",
+            "description": "A unique set of characters used to identify the legal entity. In Sweden this is one of 'organisationsnummer', 'personnummer', 'samordningsnummer' or 'gdNummer'.",
+            "example": "5512234567"
+          },
+          "country": {
+            "type": "string",
+            "description": "The country you want request data from. Valid values are 'SE', 'NO', 'FI', and 'IS'.",
+            "example": "SE"
+          }
+        }
+      },
+      "Role": {
+        "title": "Role",
+        "type": "object",
+        "description": "Indicates the Role that the Agent plays in a Membership relationship with a legal entity",
+        "externalDocs": {
+          "url": "http://uri.suomi.fi/datamodel/ns/nsgb#Role",
+          "description": "nsgb:Role"
+        },
+        "properties": {
+          "notation": {
+            "type": "string",
+            "description": "Code for the role the agent have in the legal entity"
+          },
+          "prefLabel": {
+            "type": "string",
+            "description": "The preferred label for the role the agent have in the legal entity"
+          }
+        }
+      },
+      "Person": {
+        "title": "Person",
+        "type": "object",
+        "description": "A individual human being who may be dead or alive, but not imaginary.",
+        "externalDocs": {
+          "url": "http://uri.suomi.fi/datamodel/ns/nsgb#Person",
+          "description": "nsgb:Person"
+        },
+        "properties": {
+          "fullName": {
+            "title": "Full name",
+            "description": "The complete name of the Person as one string.",
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "title": "Date of birth",
+            "description": "The point in time on which the Person was born. Persons can be registered with a membership in a legal entity whithout a identifier being a national registration number.",
+            "type": "string",
+            "format": "date"
+          },
+          "identifier": {
+            "$ref": "#/components/schemas/Identifier"
+          }
+        }
+      },
+      "Membership": {
+        "title": "Membership",
+        "type": "object",
+        "description": "Indicates the nature of an Agent's membership of a legal entity",
+        "externalDocs": {
+          "url": "http://uri.suomi.fi/datamodel/ns/nsgb#Membership",
+          "description": "nsgb:Membership"
+        },
+        "properties": {
+          "role": {
+            "$ref": "#/components/schemas/Role"
+          },
+          "memberLegalEntity": {
+            "$ref": "#/components/schemas/Identifier"
+          },
+          "memberPerson": {
+            "$ref": "#/components/schemas/Person"
+          }
+        }
+      },
+      "MembershipRequirements": {
+        "title": "Membership requirement",
+        "type": "object",
+        "description": "Required number and type of memberships in a legal entity for signatory rules",
+        "externalDocs": {
+          "url": "http://uri.suomi.fi/datamodel/ns/nsgb#MembershipRequirements",
+          "description": "nsgb:MembershipRequirements"
+        },
+        "properties": {
+          "cardinality": {
+            "title": "Cardinality",
+            "description": "Membership requirment cardinality",
+            "type": "string",
+            "enum": [
+              "ONE_OF",
+              "TWO_OF",
+              "THREE_OF",
+              "FOUR_OF",
+              "FIVE_OF",
+              "MAJORITY_OF",
+              "ALL_OF"
+            ]
+          },
+          "membership": {
+            "$ref": "#/components/schemas/Membership"
+          }
+        }
+      },
+      "SignatoryRule": {
+        "title": "Signatory Rule",
+        "type": "object",
+        "description": "Rules that dictates how signatory rights are to be used and each rule grants representation power",
+        "externalDocs": {
+          "url": "http://uri.suomi.fi/datamodel/ns/nsgb#SignatoryRule",
+          "description": "nsgb:SignatoryRule"
+        },
+        "properties": {
+          "code": {
+            "title": "Code",
+            "description": "The code of the signatory rule",
+            "type": "string",
+            "enum": [
+              "ALONE",
+              "JOINTLY",
+              "UNEXPLICIT"
+            ]
+          },
+          "requirements": {
+            "title": "Membership requirements",
+            "description": "Required number and type of memberships in a legal entity for signatory rules",
+            "$ref": "#/components/schemas/MembershipRequirements"
+          }
+        }
+      },
+      "SignatoryRights": {
+        "title": "Signatory rights",
+        "type": "object",
+        "externalDocs": {
+          "url": "http://uri.suomi.fi/datamodel/ns/nsgb#SignatoryRights",
+          "description": "nsgb:SignatoryRights"
+        },
+        "description": "Signatory rights describe mandates that gives power to an agent to represent a legal entity",
+        "properties": {
+          "description": {
+            "title": "Description",
+            "description": "Text description of the signatory rights. The signatory rights can be coded at company registration authorities but we just provide the description here.",
+            "type": "string"
+          },
+          "signatoryRule": {
+            "title": "Signatory rule",
+            "description": "Rules that dictates how signatory rights are to be used and each rule grants representation power",
+            "$ref": "#/components/schemas/SignatoryRule"
+          }
+        }
+      },
       "FinancialStatementQuery": {
         "title": "FinancialStatementQuery",
         "description": "Object to request data about a legal entity.",
@@ -850,6 +1065,12 @@
         ]
       },
       "DocumentInfo": {
+        "title": "DocumentInfo",
+        "type": "object",
+        "description": "The document info object contains metadata information necessary to correctly process the rest of the document.",
+        "externalDocs": {
+          "url": "https://www.xbrl.org/Specification/xbrl-json/CR-2021-07-07/xbrl-json-CR-2021-07-07.html#component-document-info"
+        },
         "properties": {
           "documentType": {
             "type": "string",
@@ -896,6 +1117,9 @@
       },
       "Dimensions": {
         "description": "Represents the dimensions associated with a fact",
+        "externalDocs": {
+          "url": "https://www.xbrl.org/Specification/xbrl-json/CR-2021-07-07/xbrl-json-CR-2021-07-07.html#sec-dimensions"
+        },
         "properties": {
           "concept": {
             "type": "string",
@@ -1129,7 +1353,11 @@
         ]
       },
       "Links": {
+        "title": "Links",
         "description": "Related links to other facts and footnotes.",
+        "externalDocs": {
+          "url": "https://www.xbrl.org/Specification/xbrl-json/CR-2021-07-07/xbrl-json-CR-2021-07-07.html#d1e1568"
+        },
         "additionalProperties": {
           "type": "array",
           "items": {
@@ -1138,7 +1366,12 @@
         }
       },
       "Fact": {
-        "description": "Represents the financial fact. See also https://www.xbrl.org/Specification/xbrl-json/REC-2021-10-13/xbrl-json-REC-2021-10-13.html#component-fact",
+        "title": "Fact",
+        "type": "object",
+        "description": "Represents the financial fact.",
+        "externalDocs": {
+          "url": "https://www.xbrl.org/Specification/xbrl-json/REC-2021-10-13/xbrl-json-REC-2021-10-13.html#component-fact"
+        },
         "properties": {
           "value": {
             "type": "string",
@@ -1176,6 +1409,9 @@
         "title": "Facts",
         "type": "object",
         "description": "A set of financial facts in xBRL-JSON format.",
+        "externalDocs": {
+          "url": "https://www.xbrl.org/Specification/xbrl-json/CR-2021-07-07/xbrl-json-CR-2021-07-07.html#sec-facts"
+        },
         "properties": {
           "documentInfo": {
             "$ref": "#/components/schemas/DocumentInfo"
@@ -1196,6 +1432,16 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/LegalEntityQuery"
+            }
+          }
+        }
+      },
+      "SignatoryRightsRequest": {
+        "description": "An object to specify `notation` (a unique set of characters used to identify the legal entity) and `country` (the country you want request data from).",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SignatoryRightsQuery"
             }
           }
         }
@@ -1233,6 +1479,21 @@
           "application/json; charset=utf-8": {
             "schema": {
               "$ref": "#/components/schemas/ApiError"
+            }
+          }
+        }
+      },
+      "SignatoryRightsResponse": {
+        "description": "Reply with requested company data.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SignatoryRights"
+            },
+            "examples": {
+              "Example-1": {
+                "$ref": "#/components/examples/SignatoryRightsExample"
+              }
             }
           }
         }
@@ -1287,6 +1548,34 @@
                         "language": "en"
                       }
                     }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "examples": {
+      "SignatoryRightsExample": {
+        "summary": "Example of a signatory rights response",
+        "value": {
+          "description": "Free text explaining the signatory rights",
+          "signatoryRule": {
+            "code": "ALONE",
+            "requirements": {
+              "cardinality": "ONE_OF",
+              "membership": {
+                "role": {
+                  "notation": "M",
+                  "prefLabel": "Managing Director"
+                },
+                "memberPerson": {
+                  "fullName": "Example Person",
+                  "dateOfBirth": "1968-08-24",
+                  "identifier": {
+                    "notation": "ABC1234",
+                    "issuingAuthorityName": "Civil registry of Exampleland"
                   }
                 }
               }

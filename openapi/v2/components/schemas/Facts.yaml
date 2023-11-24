@@ -1,6 +1,8 @@
 title: Facts
 type: object
 description: A set of financial facts in xBRL-JSON format.
+externalDocs: 
+  url: https://www.xbrl.org/Specification/xbrl-json/CR-2021-07-07/xbrl-json-CR-2021-07-07.html#sec-facts
 properties:
   documentInfo:
     $ref: "./DocumentInfo.yaml"

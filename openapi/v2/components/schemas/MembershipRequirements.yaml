@@ -1,0 +1,21 @@
+title: Membership requirement
+type: object
+description: Required number and type of memberships in a legal entity for signatory rules
+externalDocs: 
+  url: http://uri.suomi.fi/datamodel/ns/nsgb#MembershipRequirements
+  description: nsgb:MembershipRequirements
+properties:
+  cardinality:
+    title: Cardinality
+    description: Membership requirment cardinality
+    type: string
+    enum:
+      - ONE_OF
+      - TWO_OF
+      - THREE_OF
+      - FOUR_OF
+      - FIVE_OF
+      - MAJORITY_OF
+      - ALL_OF
+  membership:
+    $ref: './Membership.yaml'

@@ -1,5 +1,8 @@
-title: LegalEntityQuery
+title: Signatory rights query
 description: Object to request data about a legal entity.
+required:
+  - notation
+  - country
 type: object
 properties:
   notation:
@@ -10,6 +13,3 @@ properties:
     type: string
     description: The country you want request data from. Valid values are 'SE', 'NO', 'FI', and 'IS'.
     example: 'SE'
-required:
-  - notation
-  - country

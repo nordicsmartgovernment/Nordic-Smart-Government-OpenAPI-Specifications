@@ -1,6 +1,9 @@
+title: Footnotes
+type: object
+externalDocs:
+  url: https://www.xbrl.org/Specification/xbrl-json/CR-2021-07-07/xbrl-json-CR-2021-07-07.html#component-linkgroup
 description: "List of footnotes."
-properties: 
-  _:
+additionalProperties: 
     type: array
     items:
       type: string

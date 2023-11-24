@@ -1,4 +1,7 @@
+title: Links
 description: "Related links to other facts and footnotes."
+externalDocs: 
+  url: https://www.xbrl.org/Specification/xbrl-json/CR-2021-07-07/xbrl-json-CR-2021-07-07.html#d1e1568
 additionalProperties:
   type: array
   items:

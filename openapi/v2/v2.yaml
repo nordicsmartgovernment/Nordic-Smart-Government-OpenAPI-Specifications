@@ -24,12 +24,14 @@ tags:
   - name: isalive
     description: API to control the status of the service.
 paths:
+  /v2/isalive:
+    $ref: paths/isalive.yaml
   /v2/legalEntities:
     $ref: paths/legalentity.yaml
   /id/{identifier}:
     $ref: paths/id/identifier.yaml
-  /v2/isalive:
-    $ref: paths/isalive.yaml
+  /v2/signatoryRights:
+    $ref: paths/signatoryrights.yaml
   /v2/financialstatements:
     $ref: paths/financialstatements.yaml
 components:

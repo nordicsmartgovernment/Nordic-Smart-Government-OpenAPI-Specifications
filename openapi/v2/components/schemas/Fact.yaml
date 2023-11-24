@@ -1,4 +1,8 @@
-description: Represents the financial fact. See also https://www.xbrl.org/Specification/xbrl-json/REC-2021-10-13/xbrl-json-REC-2021-10-13.html#component-fact
+title: Fact
+type: object
+description: Represents the financial fact.
+externalDocs: 
+  url: https://www.xbrl.org/Specification/xbrl-json/REC-2021-10-13/xbrl-json-REC-2021-10-13.html#component-fact
 properties:
   value:
     type: string

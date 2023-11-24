@@ -1,4 +1,6 @@
 description: Represents the dimensions associated with a fact
+externalDocs: 
+  url: https://www.xbrl.org/Specification/xbrl-json/CR-2021-07-07/xbrl-json-CR-2021-07-07.html#sec-dimensions
 properties:
   concept:
     type: string

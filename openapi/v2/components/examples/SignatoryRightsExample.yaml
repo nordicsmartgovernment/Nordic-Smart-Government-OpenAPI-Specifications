@@ -1,0 +1,17 @@
+summary: Example of a signatory rights response
+value:
+  description: Free text explaining the signatory rights
+  signatoryRule:
+    code: ALONE
+    requirements:
+      cardinality: ONE_OF
+      membership:
+        role:
+          notation: M
+          prefLabel: Managing Director
+        memberPerson:
+          fullName: Example Person
+          dateOfBirth: 1968-08-24
+          identifier:
+            notation: ABC1234
+            issuingAuthorityName: Civil registry of Exampleland

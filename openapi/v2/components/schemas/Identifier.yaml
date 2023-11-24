@@ -17,4 +17,4 @@ properties:
     example: '5523451234'
 required:
   - issuingAuthorityName
-  - organisationRegistrationNumber
+  - notation
