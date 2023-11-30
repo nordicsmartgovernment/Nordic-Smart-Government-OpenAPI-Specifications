@@ -10,6 +10,10 @@ properties:
     type: string
     description: The country you want request data from. Valid values are 'SE', 'NO', 'FI', and 'IS'.
     example: 'SE'
+  includeSignatoryRights:
+    type: boolean
+    description: If true, signatory rights will be included in the response.
+    example: true
 required:
   - notation
   - country

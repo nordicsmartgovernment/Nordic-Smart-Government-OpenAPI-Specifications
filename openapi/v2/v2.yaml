@@ -30,8 +30,8 @@ paths:
     $ref: paths/legalentity.yaml
   /id/{identifier}:
     $ref: paths/id/identifier.yaml
-  /v2/signatory-rights:
-    $ref: paths/signatoryrights.yaml
+  /id/{identifier}/signatory-rights:
+    $ref: paths/id/signatoryrights.yaml
   /v2/financial-statements:
     $ref: paths/financialstatements.yaml
 components:

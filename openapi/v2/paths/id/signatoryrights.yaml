@@ -1,4 +1,4 @@
-post:
+get:
   tags:
     - nordicinformation
   summary: Retrieve information about organisations signatory rights
@@ -14,18 +14,30 @@ post:
       schema:
         type: string
       example: d120654c-0d09-481a-8956-940a76474e6b
-  requestBody:
-    $ref: '../components/requestBodies/SignatoryRightsRequest.yaml'
+    - name: identifier
+      in: path
+      description: The identifier of the legal entity.
+      required: true
+      schema:
+        type: string
+      example: 5560360793
+    - name: accept
+      in: header
+      description: Defaults to application/json. Alternatively application/json-ld can be used.
+      required: false
+      schema:
+        type: string
+      example: application/json+ld
   responses:
     '200':
       description: OK
-      $ref: '../components/responses/SignatoryRightsResponse.yaml'
+      $ref: '../../components/responses/SignatoryRightsResponse.yaml'
     '400':
       description: Bad request
-      $ref: '../components/responses/ErrorResponse.yaml'
+      $ref: '../../components/responses/ErrorResponse.yaml'
     '401':
       description: Unauthorized
-      $ref: '../components/responses/ErrorResponse.yaml'
+      $ref: '../../components/responses/ErrorResponse.yaml'
     '404':
       description: Not found
-      $ref: '../components/responses/ErrorResponse.yaml'
+      $ref: '../../components/responses/ErrorResponse.yaml'

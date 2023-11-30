@@ -134,8 +134,8 @@ paths:
         '400':
           description: Wrong format on identifier.
           $ref: '#/components/responses/ErrorResponse'
-  /v2/signatory-rights:
-    post:
+  /id/{identifier}/signatory-rights:
+    get:
       tags:
         - nordicinformation
       summary: Retrieve information about organisations signatory rights
@@ -151,8 +151,20 @@ paths:
           schema:
             type: string
           example: d120654c-0d09-481a-8956-940a76474e6b
-      requestBody:
-        $ref: '#/components/requestBodies/SignatoryRightsRequest'
+        - name: identifier
+          in: path
+          description: The identifier of the legal entity.
+          required: true
+          schema:
+            type: string
+          example: 5560360793
+        - name: accept
+          in: header
+          description: Defaults to application/json. Alternatively application/json-ld can be used.
+          required: false
+          schema:
+            type: string
+          example: application/json+ld
       responses:
         '200':
           description: OK
@@ -250,6 +262,10 @@ components:
           type: string
           description: The country you want request data from. Valid values are 'SE', 'NO', 'FI', and 'IS'.
           example: SE
+        includeSignatoryRights:
+          type: boolean
+          description: If true, signatory rights will be included in the response.
+          example: true
       required:
         - notation
         - country
@@ -558,6 +574,115 @@ components:
           type: string
       required:
         - code
+    Role:
+      title: Role
+      type: object
+      description: Indicates the Role that the Agent plays in a Membership relationship with a legal entity
+      externalDocs:
+        url: http://uri.suomi.fi/datamodel/ns/nsgb#Role
+        description: nsgb:Role
+      properties:
+        notation:
+          type: string
+          description: Code for the role the agent have in the legal entity
+        prefLabel:
+          type: string
+          description: The preferred label for the role the agent have in the legal entity
+    Person:
+      title: Person
+      type: object
+      description: A individual human being who may be dead or alive, but not imaginary.
+      externalDocs:
+        url: http://uri.suomi.fi/datamodel/ns/nsgb#Person
+        description: nsgb:Person
+      properties:
+        fullName:
+          title: Full name
+          description: The complete name of the Person as one string.
+          type: string
+        dateOfBirth:
+          title: Date of birth
+          description: The point in time on which the Person was born. Persons can be registered with a membership in a legal entity whithout a identifier being a national registration number.
+          type: string
+          format: date
+        identifier:
+          $ref: '#/components/schemas/Identifier'
+    Membership:
+      title: Membership
+      type: object
+      description: Indicates the nature of an Agent's membership of a legal entity
+      externalDocs:
+        url: http://uri.suomi.fi/datamodel/ns/nsgb#Membership
+        description: nsgb:Membership
+      properties:
+        role:
+          $ref: '#/components/schemas/Role'
+        memberLegalEntity:
+          $ref: '#/components/schemas/Identifier'
+        memberPerson:
+          $ref: '#/components/schemas/Person'
+    MembershipRequirements:
+      title: Membership requirement
+      type: object
+      description: Required number and type of memberships in a legal entity for signatory rules
+      externalDocs:
+        url: http://uri.suomi.fi/datamodel/ns/nsgb#MembershipRequirements
+        description: nsgb:MembershipRequirements
+      properties:
+        cardinality:
+          title: Cardinality
+          description: Membership requirment cardinality
+          type: string
+          enum:
+            - ONE_OF
+            - TWO_OF
+            - THREE_OF
+            - FOUR_OF
+            - FIVE_OF
+            - MAJORITY_OF
+            - ALL_OF
+        memberships:
+          type: array
+          items:
+            $ref: '#/components/schemas/Membership'
+    SignatoryRule:
+      title: Signatory Rule
+      type: object
+      description: Rules that dictates how signatory rights are to be used and each rule grants representation power
+      externalDocs:
+        url: http://uri.suomi.fi/datamodel/ns/nsgb#SignatoryRule
+        description: nsgb:SignatoryRule
+      properties:
+        code:
+          title: Code
+          description: The code of the signatory rule
+          type: string
+          enum:
+            - ALONE
+            - JOINTLY
+            - UNEXPLICIT
+        requirements:
+          title: Membership requirements
+          description: Required number and type of memberships in a legal entity for signatory rules
+          $ref: '#/components/schemas/MembershipRequirements'
+    SignatoryRights:
+      title: Signatory rights
+      type: object
+      externalDocs:
+        url: http://uri.suomi.fi/datamodel/ns/nsgb#SignatoryRights
+        description: nsgb:SignatoryRights
+      description: Signatory rights describe mandates that gives power to an agent to represent a legal entity
+      properties:
+        description:
+          title: Description
+          description: Text description of the signatory rights. The signatory rights can be coded at company registration authorities but we just provide the description here.
+          type: string
+        signatoryRules:
+          title: Signatory rule
+          type: array
+          description: Rules that dictates how signatory rights are to be used and each rule grants representation power
+          items:
+            $ref: '#/components/schemas/SignatoryRule'
     LegalEntity:
       title: LegalEntity
       type: object
@@ -593,6 +718,10 @@ components:
             $ref: '#/components/schemas/Activity'
         legalStatus:
           $ref: '#/components/schemas/LegalStatus'
+        signatoryRights:
+          type: array
+          items:
+            $ref: '#/components/schemas/SignatoryRights'
       required:
         - identifier
         - registrationDate
@@ -717,133 +846,6 @@ components:
         - status
         - title
         - type
-    SignatoryRightsQuery:
-      title: Signatory rights query
-      description: Object to request data about a legal entity.
-      required:
-        - notation
-        - country
-      type: object
-      properties:
-        notation:
-          type: string
-          description: A unique set of characters used to identify the legal entity. In Sweden this is one of 'organisationsnummer', 'personnummer', 'samordningsnummer' or 'gdNummer'.
-          example: '5512234567'
-        country:
-          type: string
-          description: The country you want request data from. Valid values are 'SE', 'NO', 'FI', and 'IS'.
-          example: SE
-    Role:
-      title: Role
-      type: object
-      description: Indicates the Role that the Agent plays in a Membership relationship with a legal entity
-      externalDocs:
-        url: http://uri.suomi.fi/datamodel/ns/nsgb#Role
-        description: nsgb:Role
-      properties:
-        notation:
-          type: string
-          description: Code for the role the agent have in the legal entity
-        prefLabel:
-          type: string
-          description: The preferred label for the role the agent have in the legal entity
-    Person:
-      title: Person
-      type: object
-      description: A individual human being who may be dead or alive, but not imaginary.
-      externalDocs:
-        url: http://uri.suomi.fi/datamodel/ns/nsgb#Person
-        description: nsgb:Person
-      properties:
-        fullName:
-          title: Full name
-          description: The complete name of the Person as one string.
-          type: string
-        dateOfBirth:
-          title: Date of birth
-          description: The point in time on which the Person was born. Persons can be registered with a membership in a legal entity whithout a identifier being a national registration number.
-          type: string
-          format: date
-        identifier:
-          $ref: '#/components/schemas/Identifier'
-    Membership:
-      title: Membership
-      type: object
-      description: Indicates the nature of an Agent's membership of a legal entity
-      externalDocs:
-        url: http://uri.suomi.fi/datamodel/ns/nsgb#Membership
-        description: nsgb:Membership
-      properties:
-        role:
-          $ref: '#/components/schemas/Role'
-        memberLegalEntity:
-          $ref: '#/components/schemas/Identifier'
-        memberPerson:
-          $ref: '#/components/schemas/Person'
-    MembershipRequirements:
-      title: Membership requirement
-      type: object
-      description: Required number and type of memberships in a legal entity for signatory rules
-      externalDocs:
-        url: http://uri.suomi.fi/datamodel/ns/nsgb#MembershipRequirements
-        description: nsgb:MembershipRequirements
-      properties:
-        cardinality:
-          title: Cardinality
-          description: Membership requirment cardinality
-          type: string
-          enum:
-            - ONE_OF
-            - TWO_OF
-            - THREE_OF
-            - FOUR_OF
-            - FIVE_OF
-            - MAJORITY_OF
-            - ALL_OF
-        memberships:
-          type: array
-          items:
-            $ref: '#/components/schemas/Membership'
-    SignatoryRule:
-      title: Signatory Rule
-      type: object
-      description: Rules that dictates how signatory rights are to be used and each rule grants representation power
-      externalDocs:
-        url: http://uri.suomi.fi/datamodel/ns/nsgb#SignatoryRule
-        description: nsgb:SignatoryRule
-      properties:
-        code:
-          title: Code
-          description: The code of the signatory rule
-          type: string
-          enum:
-            - ALONE
-            - JOINTLY
-            - UNEXPLICIT
-        requirements:
-          title: Membership requirements
-          description: Required number and type of memberships in a legal entity for signatory rules
-          $ref: '#/components/schemas/MembershipRequirements'
-    SignatoryRights:
-      title: Signatory rights
-      type: array
-      items:
-        type: object
-        externalDocs:
-          url: http://uri.suomi.fi/datamodel/ns/nsgb#SignatoryRights
-          description: nsgb:SignatoryRights
-        description: Signatory rights describe mandates that gives power to an agent to represent a legal entity
-        properties:
-          description:
-            title: Description
-            description: Text description of the signatory rights. The signatory rights can be coded at company registration authorities but we just provide the description here.
-            type: string
-          signatoryRules:
-            title: Signatory rule
-            type: array
-            description: Rules that dictates how signatory rights are to be used and each rule grants representation power
-            items:
-              $ref: '#/components/schemas/SignatoryRule'
     FinancialStatementQuery:
       title: FinancialStatementQuery
       description: Object to request data about a legal entity.
@@ -1191,12 +1193,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/LegalEntityQuery'
-    SignatoryRightsRequest:
-      description: An object to specify `notation` (a unique set of characters used to identify the legal entity) and `country` (the country you want request data from).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/SignatoryRightsQuery'
     FinancialStatementRequest:
       description: An request for financial statements.
       content:
@@ -1271,18 +1267,18 @@ components:
     SignatoryRightsExample:
       summary: Example of a signatory rights response
       value:
-        - description: Free text explaining the signatory rights
-          signatoryRules:
-            - code: ALONE
-              requirements:
-                cardinality: ONE_OF
-                memberships:
-                  - role:
-                      notation: M
-                      prefLabel: Managing Director
-                    memberPerson:
-                      fullName: Example Person
-                      dateOfBirth: '1968-08-24'
-                      identifier:
-                        notation: ABC1234
-                        issuingAuthorityName: Civil registry of Exampleland
+        description: Free text explaining the signatory rights
+        signatoryRules:
+          - code: ALONE
+            requirements:
+              cardinality: ONE_OF
+              memberships:
+                - role:
+                    notation: M
+                    prefLabel: Managing Director
+                  memberPerson:
+                    fullName: Example Person
+                    dateOfBirth: '1968-08-24'
+                    identifier:
+                      notation: ABC1234
+                      issuingAuthorityName: Civil registry of Exampleland
