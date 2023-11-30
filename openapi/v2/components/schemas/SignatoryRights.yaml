@@ -9,8 +9,10 @@ properties:
     title: Description
     description: Text description of the signatory rights. The signatory rights can be coded at company registration authorities but we just provide the description here.
     type: string
-  signatoryRule:
+  signatoryRules:
     title: Signatory rule
+    type: array
     description: Rules that dictates how signatory rights are to be used and each rule grants representation power
-    $ref: './SignatoryRule.yaml'
-  
+    items:
+      $ref: './SignatoryRule.yaml'
+    

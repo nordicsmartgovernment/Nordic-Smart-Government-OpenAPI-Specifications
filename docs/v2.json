@@ -40,7 +40,7 @@
     }
   ],
   "paths": {
-    "/v2/isalive": {
+    "/v2/is-alive": {
       "get": {
         "tags": [
           "isalive"
@@ -70,7 +70,7 @@
         "x-throttling-tier": null
       }
     },
-    "/v2/legalEntities": {
+    "/v2/legal-entities": {
       "post": {
         "tags": [
           "nordicinformation"
@@ -188,7 +188,7 @@
         }
       }
     },
-    "/v2/signatoryRights": {
+    "/v2/signatory-rights": {
       "post": {
         "tags": [
           "nordicinformation"
@@ -233,7 +233,7 @@
         }
       }
     },
-    "/v2/financialstatements": {
+    "/v2/financial-statements": {
       "post": {
         "tags": [
           "nordicinformation"
@@ -979,8 +979,11 @@
               "ALL_OF"
             ]
           },
-          "membership": {
-            "$ref": "#/components/schemas/Membership"
+          "memberships": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Membership"
+            }
           }
         }
       },
@@ -1012,22 +1015,28 @@
       },
       "SignatoryRights": {
         "title": "Signatory rights",
-        "type": "object",
-        "externalDocs": {
-          "url": "http://uri.suomi.fi/datamodel/ns/nsgb#SignatoryRights",
-          "description": "nsgb:SignatoryRights"
-        },
-        "description": "Signatory rights describe mandates that gives power to an agent to represent a legal entity",
-        "properties": {
-          "description": {
-            "title": "Description",
-            "description": "Text description of the signatory rights. The signatory rights can be coded at company registration authorities but we just provide the description here.",
-            "type": "string"
+        "type": "array",
+        "items": {
+          "type": "object",
+          "externalDocs": {
+            "url": "http://uri.suomi.fi/datamodel/ns/nsgb#SignatoryRights",
+            "description": "nsgb:SignatoryRights"
           },
-          "signatoryRule": {
-            "title": "Signatory rule",
-            "description": "Rules that dictates how signatory rights are to be used and each rule grants representation power",
-            "$ref": "#/components/schemas/SignatoryRule"
+          "description": "Signatory rights describe mandates that gives power to an agent to represent a legal entity",
+          "properties": {
+            "description": {
+              "title": "Description",
+              "description": "Text description of the signatory rights. The signatory rights can be coded at company registration authorities but we just provide the description here.",
+              "type": "string"
+            },
+            "signatoryRules": {
+              "title": "Signatory rule",
+              "type": "array",
+              "description": "Rules that dictates how signatory rights are to be used and each rule grants representation power",
+              "items": {
+                "$ref": "#/components/schemas/SignatoryRule"
+              }
+            }
           }
         }
       },
@@ -1559,29 +1568,35 @@
     "examples": {
       "SignatoryRightsExample": {
         "summary": "Example of a signatory rights response",
-        "value": {
-          "description": "Free text explaining the signatory rights",
-          "signatoryRule": {
-            "code": "ALONE",
-            "requirements": {
-              "cardinality": "ONE_OF",
-              "membership": {
-                "role": {
-                  "notation": "M",
-                  "prefLabel": "Managing Director"
-                },
-                "memberPerson": {
-                  "fullName": "Example Person",
-                  "dateOfBirth": "1968-08-24",
-                  "identifier": {
-                    "notation": "ABC1234",
-                    "issuingAuthorityName": "Civil registry of Exampleland"
-                  }
+        "value": [
+          {
+            "description": "Free text explaining the signatory rights",
+            "signatoryRules": [
+              {
+                "code": "ALONE",
+                "requirements": {
+                  "cardinality": "ONE_OF",
+                  "memberships": [
+                    {
+                      "role": {
+                        "notation": "M",
+                        "prefLabel": "Managing Director"
+                      },
+                      "memberPerson": {
+                        "fullName": "Example Person",
+                        "dateOfBirth": "1968-08-24",
+                        "identifier": {
+                          "notation": "ABC1234",
+                          "issuingAuthorityName": "Civil registry of Exampleland"
+                        }
+                      }
+                    }
+                  ]
                 }
               }
-            }
+            ]
           }
-        }
+        ]
       }
     }
   }

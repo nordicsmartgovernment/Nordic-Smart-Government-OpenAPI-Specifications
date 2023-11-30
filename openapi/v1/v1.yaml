@@ -25,9 +25,9 @@ tags:
   - name: isalive
     description: API to control the status of the service
 paths:
-  /v1/registeredorganisations:
+  /v1/registered-organisations:
     $ref: paths/registeredorganisations.yaml
-  /v1/isalive:
+  /v1/is-alive:
     $ref: paths/isalive.yaml
 components:
   securitySchemes:

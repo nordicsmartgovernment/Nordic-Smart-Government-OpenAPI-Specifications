@@ -17,5 +17,7 @@ properties:
       - FIVE_OF
       - MAJORITY_OF
       - ALL_OF
-  membership:
-    $ref: './Membership.yaml'
+  memberships:
+    type: array
+    items:
+      $ref: './Membership.yaml'

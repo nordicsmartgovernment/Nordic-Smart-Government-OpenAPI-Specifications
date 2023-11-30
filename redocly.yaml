@@ -8,6 +8,7 @@ extends:
   - recommended
 rules:
   no-unused-components: error
+  paths-kebab-case: error
 theme:
   openapi:
     htmlTemplate: ./docs/index.html
