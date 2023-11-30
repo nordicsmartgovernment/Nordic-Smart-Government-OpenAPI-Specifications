@@ -43,13 +43,14 @@
     }
   ],
   "paths": {
-    "/v1/registeredorganisations": {
+    "/v1/registered-organisations": {
       "post": {
         "tags": [
           "nordicinformation"
         ],
         "summary": "Retrieve data about a registered organisation",
         "description": "With this operation you can retrieve data about a registered organisation.",
+        "operationId": "registeredOrganisations",
         "parameters": [
           {
             "name": "X-Request-Id",
@@ -150,13 +151,14 @@
         "x-throttling-tier": null
       }
     },
-    "/v1/isalive": {
+    "/v1/is-alive": {
       "get": {
         "tags": [
           "isalive"
         ],
         "summary": "API-status",
         "description": "With this operation you can check to see that the API is up and running.",
+        "operationId": "isalive",
         "responses": {
           "200": {
             "description": "OK"
