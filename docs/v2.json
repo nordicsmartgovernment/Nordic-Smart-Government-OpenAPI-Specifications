@@ -882,7 +882,10 @@
             "example": "Volvo AB"
           },
           "identifier": {
-            "$ref": "#/components/schemas/Identifier"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Identifier"
+            }
           },
           "registeredAddress": {
             "$ref": "#/components/schemas/Address"

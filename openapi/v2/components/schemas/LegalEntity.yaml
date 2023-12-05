@@ -17,7 +17,9 @@ properties:
     type: string
     example: Volvo AB
   identifier:
-    $ref: './Identifier.yaml'
+    type: array
+    items:
+      $ref: './Identifier.yaml'
   registeredAddress:
     $ref: './Address.yaml'
   postalAddress:

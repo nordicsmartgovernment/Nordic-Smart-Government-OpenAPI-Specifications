@@ -4,7 +4,16 @@ get:
   description: Get basic information about a legal entity using URI identifier. Note that URI identifier should not change over time, meaning that this API path should be version independent. If there ever is a need to change the path or domain for the API gateway, original domain and path should still remain for redirecting the request by using permantly moved (301) response to the original domain and path.
   summary: Get organisation by id
   operationId: getId
-  parameters: 
+  parameters:
+    - name: X-Request-Id
+      in: header
+      description: Client generated ID to call the API. In case of error this will be sent in the attribute `requestId` or as a header attribute.
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: string
+      example: d120654c-0d09-481a-8956-940a76474e6b
     - name: identifier
       in: path
       description: The identifier of the legal entity.

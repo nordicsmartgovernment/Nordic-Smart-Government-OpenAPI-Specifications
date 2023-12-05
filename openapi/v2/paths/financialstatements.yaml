@@ -1,8 +1,8 @@
 post:
   tags:
     - nordicinformation
-  summary: Retrieve financial statement for the organisation
-  description: With this operation you can retrieve financial statement for the organisation.
+  summary: Retrieve financial statements for the SMEs.
+  description: With this operation you can retrieve financial statements for the SMEs.
   operationId: financialStatements
   parameters:
     - name: X-Request-Id
