@@ -157,6 +157,18 @@
         "operationId": "getId",
         "parameters": [
           {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Client generated ID to call the API. In case of error this will be sent in the attribute `requestId` or as a header attribute.",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "d120654c-0d09-481a-8956-940a76474e6b"
+          },
+          {
             "name": "identifier",
             "in": "path",
             "description": "The identifier of the legal entity.",
@@ -255,8 +267,8 @@
         "tags": [
           "nordicinformation"
         ],
-        "summary": "Retrieve financial statement for the organisation",
-        "description": "With this operation you can retrieve financial statement for the organisation.",
+        "summary": "Retrieve financial statements for the SMEs.",
+        "description": "With this operation you can retrieve financial statements for the SMEs.",
         "operationId": "financialStatements",
         "parameters": [
           {
@@ -1047,6 +1059,18 @@
           "type"
         ]
       },
+      "SignatoryRightsList": {
+        "type": "object",
+        "properties": {
+          "signatoryRights": {
+            "description": "List of Legal Entity's signatory rights",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SignatoryRights"
+            }
+          }
+        }
+      },
       "FinancialStatementQuery": {
         "title": "FinancialStatementQuery",
         "description": "Object to request data about a legal entity.",
@@ -1494,7 +1518,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/SignatoryRights"
+              "$ref": "#/components/schemas/SignatoryRightsList"
             },
             "examples": {
               "Example-1": {
@@ -1566,29 +1590,33 @@
       "SignatoryRightsExample": {
         "summary": "Example of a signatory rights response",
         "value": {
-          "description": "Free text explaining the signatory rights",
-          "signatoryRules": [
+          "signatoryRights": [
             {
-              "code": "ALONE",
-              "requirements": {
-                "cardinality": "ONE_OF",
-                "memberships": [
-                  {
-                    "role": {
-                      "notation": "M",
-                      "prefLabel": "Managing Director"
-                    },
-                    "memberPerson": {
-                      "fullName": "Example Person",
-                      "dateOfBirth": "1968-08-24",
-                      "identifier": {
-                        "notation": "ABC1234",
-                        "issuingAuthorityName": "Civil registry of Exampleland"
+              "description": "Free text explaining the signatory rights",
+              "signatoryRules": [
+                {
+                  "code": "ALONE",
+                  "requirements": {
+                    "cardinality": "ONE_OF",
+                    "memberships": [
+                      {
+                        "role": {
+                          "notation": "M",
+                          "prefLabel": "Managing Director"
+                        },
+                        "memberPerson": {
+                          "fullName": "Example Person",
+                          "dateOfBirth": "1968-08-24",
+                          "identifier": {
+                            "notation": "ABC1234",
+                            "issuingAuthorityName": "Civil registry of Exampleland"
+                          }
+                        }
                       }
-                    }
+                    ]
                   }
-                ]
-              }
+                }
+              ]
             }
           ]
         }

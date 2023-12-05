@@ -1,5 +1,6 @@
 summary: Example of a signatory rights response
 value:
+  signatoryRights:
   - description: Free text explaining the signatory rights
     signatoryRules:
       - code: ALONE
