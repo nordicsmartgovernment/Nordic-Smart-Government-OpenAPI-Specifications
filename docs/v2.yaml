@@ -916,6 +916,12 @@ components:
                 - complete
                 - consistent
                 - all
+            xebr:incomeStatementPresentation:
+              type: string
+              description: This feature allows an xBRL-JSON document to declare what report type is used for the income statement.
+              enum:
+                - xebr:ProfitAndLossAccountByNatureOfExpenseReport
+                - xebr:ProfitAndLossAccountByFunctionOfExpenseReport
         namespaces:
           type: object
           description: A set of namespaces used in the document.
@@ -1282,6 +1288,7 @@ components:
           features:
             xbrl:canonicalValues: true
             xbrl:allowedDuplicates: all
+            xebr:incomeStatementPresentation: xebr:ProfitAndLossAccountByNatureOfExpenseReport
           namespaces:
             bach: http://www.irisbusiness.com/taxonomy/eu/elts/bach
             xebr: http://www.irisbusiness.com/taxonomy/eu/elts/xebr
@@ -1315,6 +1322,7 @@ components:
           features:
             xbrl:canonicalValues: true
             xbrl:allowedDuplicates: all
+            xebr:incomeStatementPresentation: xebr:ProfitAndLossAccountByNatureOfExpenseReport
           namespaces:
             bach: http://www.irisbusiness.com/taxonomy/eu/elts/bach
             xebr: http://www.irisbusiness.com/taxonomy/eu/elts/xebr

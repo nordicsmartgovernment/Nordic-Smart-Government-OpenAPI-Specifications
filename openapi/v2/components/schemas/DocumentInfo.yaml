@@ -22,6 +22,12 @@ properties:
           - complete
           - consistent
           - all
+      xebr:incomeStatementPresentation:
+        type: string
+        description: This feature allows an xBRL-JSON document to declare what report type is used for the income statement.
+        enum:
+          - xebr:ProfitAndLossAccountByNatureOfExpenseReport
+          - xebr:ProfitAndLossAccountByFunctionOfExpenseReport
   namespaces:
     type: object
     description: A set of namespaces used in the document.

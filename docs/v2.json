@@ -1133,6 +1133,14 @@
                   "consistent",
                   "all"
                 ]
+              },
+              "xebr:incomeStatementPresentation": {
+                "type": "string",
+                "description": "This feature allows an xBRL-JSON document to declare what report type is used for the income statement.",
+                "enum": [
+                  "xebr:ProfitAndLossAccountByNatureOfExpenseReport",
+                  "xebr:ProfitAndLossAccountByFunctionOfExpenseReport"
+                ]
               }
             }
           },
@@ -1589,7 +1597,8 @@
             "documentType": "https://xbrl.org/2021/xbrl-json",
             "features": {
               "xbrl:canonicalValues": true,
-              "xbrl:allowedDuplicates": "all"
+              "xbrl:allowedDuplicates": "all",
+              "xebr:incomeStatementPresentation": "xebr:ProfitAndLossAccountByNatureOfExpenseReport"
             },
             "namespaces": {
               "bach": "http://www.irisbusiness.com/taxonomy/eu/elts/bach",
@@ -1635,7 +1644,8 @@
             "documentType": "https://xbrl.org/2021/xbrl-json",
             "features": {
               "xbrl:canonicalValues": true,
-              "xbrl:allowedDuplicates": "all"
+              "xbrl:allowedDuplicates": "all",
+              "xebr:incomeStatementPresentation": "xebr:ProfitAndLossAccountByNatureOfExpenseReport"
             },
             "namespaces": {
               "bach": "http://www.irisbusiness.com/taxonomy/eu/elts/bach",

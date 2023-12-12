@@ -5,6 +5,7 @@ value:
     features:
       xbrl:canonicalValues: true
       xbrl:allowedDuplicates: "all"
+      xebr:incomeStatementPresentation: xebr:ProfitAndLossAccountByNatureOfExpenseReport
     namespaces:
       bach: http://www.irisbusiness.com/taxonomy/eu/elts/bach
       xebr: http://www.irisbusiness.com/taxonomy/eu/elts/xebr
@@ -49,7 +50,7 @@ value:
         entity: urn:lei:123456789
         period: 2020/2021
         unit: iso4217:EUR
-        
+
     fact_2020_9:
       value: "21515953"
       decimals: 0

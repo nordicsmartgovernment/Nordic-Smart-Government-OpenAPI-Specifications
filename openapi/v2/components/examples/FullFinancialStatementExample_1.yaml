@@ -5,6 +5,7 @@ value:
     features:
       xbrl:canonicalValues: true
       xbrl:allowedDuplicates: "all"
+      xebr:incomeStatementPresentation: xebr:ProfitAndLossAccountByNatureOfExpenseReport
     namespaces:
       bach: http://www.irisbusiness.com/taxonomy/eu/elts/bach
       xebr: http://www.irisbusiness.com/taxonomy/eu/elts/xebr
