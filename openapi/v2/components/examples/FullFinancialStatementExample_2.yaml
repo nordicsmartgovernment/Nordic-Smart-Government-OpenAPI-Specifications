@@ -17,7 +17,7 @@ value:
       dimensions:
         concept: bach:NetTurnover
         entity: urn:lei:123456789
-        period: 2020/2021
+        period: 2020-01-01T00:00:00/2021-01-01T00:00:00
         unit: iso4217:EUR
     fact_2020_2:
       value: "54359.34"
@@ -25,7 +25,7 @@ value:
       dimensions:
         concept: bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised
         entity: urn:lei:123456789
-        period: 2020/2021
+        period: 2020-01-01T00:00:00/2021-01-01T00:00:00
         unit: iso4217:EUR
     fact_2020_3:
       value: "1750"
@@ -33,14 +33,14 @@ value:
       dimensions:
         concept: bach:OtherExternalCharges
         entity: urn:lei:123456789
-        period: 2020/2021
+        period: 2020-01-01T00:00:00/2021-01-01T00:00:00
     fact_2020_4:
       value: "46572.447"
       decimals: 0
       dimensions:
         concept: xebr:StaffCostsPresentation
         entity: urn:lei:123456789
-        period: 2020/2021
+        period: 2020-01-01T00:00:00/2021-01-01T00:00:00
         unit: iso4217:EUR
     fact_2020_5:
       value: "1422.39"
@@ -48,7 +48,7 @@ value:
       dimensions:
         concept: xebr:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsPresentation
         entity: urn:lei:123456789
-        period: 2020/2021
+        period: 2020-01-01T00:00:00/2021-01-01T00:00:00
         unit: iso4217:EUR
 
     fact_2020_9:
@@ -57,7 +57,7 @@ value:
       dimensions:
         concept: xebr:OtherOperatingExpensesPresentation
         entity: urn:lei:123456789
-        period: 2020/2021
+        period: 2020-01-01T00:00:00/2021-01-01T00:00:00
         unit: iso4217:EUR
     fact_2020_10:
       value: "5751656"
@@ -65,7 +65,7 @@ value:
       dimensions:
         concept: bach:FinancialIncomeTotal
         entity: urn:lei:123456789
-        period: 2020/2021
+        period: 2020-01-01T00:00:00/2021-01-01T00:00:00
         unit: iso4217:EUR
     fact_2020_11:
       value: "-9956205"
@@ -73,7 +73,7 @@ value:
       dimensions:
         concept: xebr:ProfitLossForTheFinancialYearTotal
         entity: urn:lei:123456789
-        period: 2020/2021
+        period: 2020-01-01T00:00:00/2021-01-01T00:00:00
         unit: iso4217:EUR
     fact_2021_1:
       value: "61398823"
@@ -81,7 +81,7 @@ value:
       dimensions:
         concept: bach:NetTurnover
         entity: urn:lei:123456789
-        period: 2019/2020
+        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
     fact_2021_2:
       value: "-545881"
@@ -89,7 +89,7 @@ value:
       dimensions:
         concept: bach:VariationInStocksOfFinishedGoodsAndWorkInProgress
         entity: urn:lei:123456789
-        period: 2019/2020
+        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
     fact_2021_3:
       value: "374819"
@@ -97,14 +97,14 @@ value:
       dimensions:
         concept: bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised
         entity: urn:lei:123456789
-        period: 2019/2020
+        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
     fact_2021_4:
       value: "15076679"
       decimals: 0
       dimensions:
         concept: bach:OtherOperatingIncome
         entity: urn:lei:123456789
-        period: 2019/2020
+        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
     fact_2021_5:
       value: "35416502"
@@ -112,7 +112,7 @@ value:
       dimensions:
         concept: bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised
         entity: urn:lei:123456789
-        period: 2019/2020
+        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
     fact_2021_6:
       value: "230738"
@@ -120,7 +120,7 @@ value:
       dimensions:
         concept: bach:OtherExternalCharges
         entity: urn:lei:123456789
-        period: 2019/2020
+        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
     fact_2021_7:
       value: "23640754"
@@ -128,7 +128,7 @@ value:
       dimensions:
         concept: xebr:StaffCostsPresentation
         entity: urn:lei:123456789
-        period: 2019/2020
+        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
     fact_2021_8:
       value: "2886493"
@@ -136,7 +136,7 @@ value:
       dimensions:
         concept: xebr:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsPresentation
         entity: urn:lei:123456789
-        period: 2019/2020
+        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
     fact_2021_9:
       value: "17438120"
@@ -144,7 +144,7 @@ value:
       dimensions:
         concept: xebr:OtherOperatingExpensesPresentation
         entity: urn:lei:123456789
-        period: 2019/2020
+        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
     fact_2021_10:
       value: "27141367"
@@ -152,7 +152,7 @@ value:
       dimensions:
         concept: bach:FinancialIncomeTotal
         entity: urn:lei:123456789
-        period: 2019/2020
+        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
     fact_2021_11:
       value: "26265200"
@@ -160,7 +160,7 @@ value:
       dimensions:
         concept: xebr:ProfitLossForTheFinancialYearTotal
         entity: urn:lei:123456789
-        period: 2019/2020
+        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
 
 

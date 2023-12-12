@@ -19,7 +19,7 @@ value:
       dimensions:
         concept: bach:NetTurnover
         entity: urn:lei:123456789
-        period: 2019/2020
+        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
       links:
         footnote:
