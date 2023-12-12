@@ -1,0 +1,32 @@
+summary: Simple example with footnotes
+value:
+  documentInfo:
+    documentType: https://xbrl.org/2021/xbrl-json
+    features:
+      xbrl:canonicalValues: true
+      xbrl:allowedDuplicates: "all"
+    namespaces:
+      bach: http://www.irisbusiness.com/taxonomy/eu/elts/bach
+      xebr: http://www.irisbusiness.com/taxonomy/eu/elts/xebr
+      iso4217: http://www.xbrl.org/2003/iso4217
+      xbrl: https://xbrl.org/2021
+      xbrli: http://www.xbrl.org/2003/instance
+  facts:
+    fact_1:
+      value: "2030452"
+      decimals: 0
+      dimensions:
+        concept: bach:NetTurnover
+        entity: urn:lei:123456789
+        period: 2019/2020
+        unit: iso4217:EUR
+      links:
+        footnote:
+          comment:
+            - fact_2
+    fact_2:
+      value: This is a footnote
+      dimensions:
+        concept: xbrl:note
+        noteId: fact_2
+        language: "en"
