@@ -1176,17 +1176,16 @@
             "enum": [
               "bach:NetTurnover",
               "bach:VariationInStocksOfFinishedGoodsAndWorkInProgress",
-              "bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised",
+              "bach:RawMaterialsAndConsumables",
               "bach:OtherOperatingIncome",
-              "bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised",
               "bach:OtherExternalCharges",
-              "xebr:StaffCostsPresentation",
+              "bach:StaffCostsTotal",
               "xebr:WagesAndSalaries",
               "xebr:SocialSecurityCosts",
-              "xebr:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsPresentation",
+              "bach:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsTotal",
               "xebr:ValueAdjustementsInRespectOfFormationExpensesAndOfTangibleAndIntangibleFixedAssets",
               "xebr:ValueAdjustementsInRespectOfCurrentAssetsToTheExtendThatTheyExceedTheAmountOfValueAdjusmentsWhichAreNormalInTheUndertakingConcerned",
-              "xebr:OtherOperatingExpensesPresentation",
+              "xebr:OtherOperatingExpensesTotal",
               "bach:FinancialIncomeTotal",
               "xebr:IncomeFromOtherInvestmentsAndLoansFormingPartOfTheFixedAssets",
               "xebr:IncomeFromOtherInvestmentsAndLoansFormingPartOfTheFixedAssetsOfWhichDerivedFromAffiliatedUndertakings",
@@ -1197,6 +1196,10 @@
               "bach:ProfitOrLossAfterTaxation",
               "xebr:OtherTaxes",
               "xebr:ProfitLossForTheFinancialYearTotal",
+              "xebr:CostOfSalesIncludingValueAdjustments",
+              "xebr:GrossProfitOrLoss",
+              "xebr:DistribustionCostsIncludingValueAdjustments",
+              "xebr:AdministrationExpensesIncludingValueAdjustments",
               "xbrl:note"
             ]
           },
@@ -1684,7 +1687,7 @@
               "value": "372262",
               "decimals": 0,
               "dimensions": {
-                "concept": "bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised",
+                "concept": "bach:RawMaterialsAndConsumables",
                 "entity": "urn:lei:123456789",
                 "period": "2020-01-01T00:00:00/2021-01-01T00:00:00"
               }
@@ -1703,7 +1706,7 @@
               "value": "52632931",
               "decimals": 0,
               "dimensions": {
-                "concept": "bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised",
+                "concept": "bach:RawMaterialsAndConsumables",
                 "entity": "urn:lei:123456789",
                 "period": "2020-01-01T00:00:00/2021-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -1723,7 +1726,7 @@
               "value": "27299037",
               "decimals": 0,
               "dimensions": {
-                "concept": "xebr:StaffCostsPresentation",
+                "concept": "bach:StaffCostsTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2020-01-01T00:00:00/2021-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -1733,7 +1736,7 @@
               "value": "4071669",
               "decimals": 0,
               "dimensions": {
-                "concept": "xebr:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsPresentation",
+                "concept": "bach:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2020-01-01T00:00:00/2021-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -1743,7 +1746,7 @@
               "value": "21515953",
               "decimals": 0,
               "dimensions": {
-                "concept": "xebr:OtherOperatingExpensesPresentation",
+                "concept": "xebr:OtherOperatingExpensesTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2020-01-01T00:00:00/2021-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -1793,7 +1796,7 @@
               "value": "374819",
               "decimals": 0,
               "dimensions": {
-                "concept": "bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised",
+                "concept": "bach:RawMaterialsAndConsumables",
                 "entity": "urn:lei:123456789",
                 "period": "2019-01-01T00:00:00/2020-01-01T00:00:00"
               }
@@ -1812,7 +1815,7 @@
               "value": "35416502",
               "decimals": 0,
               "dimensions": {
-                "concept": "bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised",
+                "concept": "bach:RawMaterialsAndConsumables",
                 "entity": "urn:lei:123456789",
                 "period": "2019-01-01T00:00:00/2020-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -1832,7 +1835,7 @@
               "value": "23640754",
               "decimals": 0,
               "dimensions": {
-                "concept": "xebr:StaffCostsPresentation",
+                "concept": "bach:StaffCostsTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2019-01-01T00:00:00/2020-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -1842,7 +1845,7 @@
               "value": "2886493",
               "decimals": 0,
               "dimensions": {
-                "concept": "xebr:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsPresentation",
+                "concept": "bach:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2019-01-01T00:00:00/2020-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -1852,7 +1855,7 @@
               "value": "17438120",
               "decimals": 0,
               "dimensions": {
-                "concept": "xebr:OtherOperatingExpensesPresentation",
+                "concept": "xebr:OtherOperatingExpensesTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2019-01-01T00:00:00/2020-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -1912,7 +1915,7 @@
               "value": "54359.34",
               "decimals": 2,
               "dimensions": {
-                "concept": "bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised",
+                "concept": "bach:RawMaterialsAndConsumables",
                 "entity": "urn:lei:123456789",
                 "period": "2021-01-01T00:00:00/2022-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -1931,7 +1934,7 @@
               "value": "46572.447",
               "decimals": 0,
               "dimensions": {
-                "concept": "xebr:StaffCostsPresentation",
+                "concept": "bach:StaffCostsTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2021-01-01T00:00:00/2022-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -1941,7 +1944,7 @@
               "value": "1422.39",
               "decimals": 2,
               "dimensions": {
-                "concept": "xebr:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsPresentation",
+                "concept": "bach:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2021-01-01T00:00:00/2022-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -1951,7 +1954,7 @@
               "value": "42032.84",
               "decimals": 2,
               "dimensions": {
-                "concept": "xebr:OtherOperatingExpensesPresentation",
+                "concept": "xebr:OtherOperatingExpensesTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2021-01-01T00:00:00/2022-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -2001,7 +2004,7 @@
               "value": "96303.52",
               "decimals": 2,
               "dimensions": {
-                "concept": "bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised",
+                "concept": "bach:RawMaterialsAndConsumables",
                 "entity": "urn:lei:123456789",
                 "period": "2019-01-01T00:00:00/2020-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -2020,7 +2023,7 @@
               "value": "33538.09",
               "decimals": 2,
               "dimensions": {
-                "concept": "xebr:StaffCostsPresentation",
+                "concept": "bach:StaffCostsTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2019-01-01T00:00:00/2020-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -2030,7 +2033,7 @@
               "value": "9545.20",
               "decimals": 2,
               "dimensions": {
-                "concept": "xebr:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsPresentation",
+                "concept": "bach:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2019-01-01T00:00:00/2020-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -2040,7 +2043,7 @@
               "value": "67026.59",
               "decimals": 2,
               "dimensions": {
-                "concept": "xebr:OtherOperatingExpensesPresentation",
+                "concept": "xebr:OtherOperatingExpensesTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2019-01-01T00:00:00/2020-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -2100,7 +2103,7 @@
               "value": "933.80",
               "decimals": 2,
               "dimensions": {
-                "concept": "bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised",
+                "concept": "bach:RawMaterialsAndConsumables",
                 "entity": "urn:lei:123456789",
                 "period": "2021-01-01T00:00:00/2020-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -2110,7 +2113,7 @@
               "value": "151006.15",
               "decimals": 2,
               "dimensions": {
-                "concept": "xebr:StaffCostsPresentation",
+                "concept": "bach:StaffCostsTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2021-01-01T00:00:00/2020-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -2120,7 +2123,7 @@
               "value": "897.58",
               "decimals": 2,
               "dimensions": {
-                "concept": "xebr:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsPresentation",
+                "concept": "bach:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2021-01-01T00:00:00/2020-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -2130,7 +2133,7 @@
               "value": "-1034.50",
               "decimals": 2,
               "dimensions": {
-                "concept": "xebr:OtherOperatingExpensesPresentation",
+                "concept": "xebr:OtherOperatingExpensesTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2021-01-01T00:00:00/2020-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -2180,7 +2183,7 @@
               "value": "289964.31",
               "decimals": 2,
               "dimensions": {
-                "concept": "bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised",
+                "concept": "bach:RawMaterialsAndConsumables",
                 "entity": "urn:lei:123456789",
                 "period": "2021-01-01T00:00:00/2020-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -2190,7 +2193,7 @@
               "value": "182367.20",
               "decimals": 2,
               "dimensions": {
-                "concept": "xebr:StaffCostsPresentation",
+                "concept": "bach:StaffCostsTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2021-01-01T00:00:00/2020-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -2200,7 +2203,7 @@
               "value": "637.19",
               "decimals": 2,
               "dimensions": {
-                "concept": "xebr:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsPresentation",
+                "concept": "bach:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2021-01-01T00:00:00/2020-01-01T00:00:00",
                 "unit": "iso4217:EUR"
@@ -2210,7 +2213,7 @@
               "value": "277251.67",
               "decimals": 2,
               "dimensions": {
-                "concept": "xebr:OtherOperatingExpensesPresentation",
+                "concept": "xebr:OtherOperatingExpensesTotal",
                 "entity": "urn:lei:123456789",
                 "period": "2021-01-01T00:00:00/2020-01-01T00:00:00",
                 "unit": "iso4217:EUR"
