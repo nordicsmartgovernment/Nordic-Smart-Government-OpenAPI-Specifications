@@ -1,4 +1,4 @@
-summary: Full example 2
+summary: Full example 3
 value:
   documentInfo:
     documentType: https://xbrl.org/2021/xbrl-json
@@ -11,137 +11,131 @@ value:
       xebr: http://www.irisbusiness.com/taxonomy/eu/elts/xebr
       iso4217: http://www.xbrl.org/2003/iso4217
   facts:
-    fact_2021_1:
-      value: "164028.08"
+    fact_2019_1:
+      value: "284523.11"
       decimals: 2
       dimensions:
         concept: bach:NetTurnover
         entity: urn:lei:123456789
-        period: 2021-01-01T00:00:00/2022-01-01T00:00:00
+        period: 2021-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
-    fact_2021_2:
-      value: "54359.34"
+    fact_2019_2:
+      value: "933.80"
       decimals: 2
       dimensions:
         concept: bach:RawMaterialsAndConsumables
         entity: urn:lei:123456789
-        period: 2021-01-01T00:00:00/2022-01-01T00:00:00
+        period: 2021-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
-    fact_2021_3:
-      value: "1750"
-      decimals: 0
-      dimensions:
-        concept: bach:OtherExternalCharges
-        entity: urn:lei:123456789
-        period: 2021-01-01T00:00:00/2022-01-01T00:00:00
-    fact_2021_4:
-      value: "46572.447"
-      decimals: 0
+    fact_2019_4:
+      value: "151006.15"
+      decimals: 2
       dimensions:
         concept: bach:StaffCostsTotal
         entity: urn:lei:123456789
-        period: 2021-01-01T00:00:00/2022-01-01T00:00:00
+        period: 2021-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
-    fact_2021_5:
-      value: "1422.39"
+    fact_2019_5:
+      value: "897.58"
       decimals: 2
       dimensions:
         concept: bach:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsTotal
         entity: urn:lei:123456789
-        period: 2021-01-01T00:00:00/2022-01-01T00:00:00
+        period: 2021-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
-    fact_2021_6:
-      value: "42032.84"
+    fact_2019_6:
+      value: "-1034.50"
       decimals: 2
       dimensions:
         concept: xebr:OtherOperatingExpensesTotal
         entity: urn:lei:123456789
-        period: 2021-01-01T00:00:00/2022-01-01T00:00:00
-        unit: iso4217:EUR
-    fact_2021_7:
-      value: "-1034.50"
+        period: 2021-01-01T00:00:00/2020-01-01T00:00:00
+        unit: iso4217:EUR   
+    fact_2019_7:
+      value: "313072.46"
       decimals: 2
       dimensions:
         concept: bach:FinancialIncomeTotal
         entity: urn:lei:123456789
-        period: 2021-01-01T00:00:00/2022-01-01T00:00:00
+        period: 2021-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
-    fact_2021_8:
-      value: "3502,09"
-      decimals: 0
+    fact_2019_8:
+      value: "5206.15"
+      decimals: 2
       dimensions:
         concept: bach:TaxOnProfitOrLoss
         entity: urn:lei:123456789
-        period: 2021-01-01T00:00:00/2022-01-01T00:00:00
+        period: 2021-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
-    fact_2021_9:
-      value: "13354.48"
+    fact_2019_9:
+      value: "75975.98"
       decimals: 2
       dimensions:
         concept: xebr:ProfitLossForTheFinancialYearTotal
         entity: urn:lei:123456789
-        period: 2021-01-01T00:00:00/2022-01-01T00:00:00
+        period: 2021-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
     fact_2020_1:
-      value: "260646.86"
-      decimals: 0
+      value: "289964.31"
+      decimals: 2
       dimensions:
         concept: bach:NetTurnover
         entity: urn:lei:123456789
-        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
+        period: 2021-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
     fact_2020_2:
-      value: "96303.52"
+      value: "289964.31"
       decimals: 2
       dimensions:
         concept: bach:RawMaterialsAndConsumables
         entity: urn:lei:123456789
-        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
+        period: 2021-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
-    fact_2020_3:
-      value: "37181.02"
-      decimals: 2
-      dimensions:
-        concept: bach:OtherExternalCharges
-        entity: urn:lei:123456789
-        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
     fact_2020_4:
-      value: "33538.09"
+      value: "182367.20"
       decimals: 2
       dimensions:
         concept: bach:StaffCostsTotal
         entity: urn:lei:123456789
-        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
+        period: 2021-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
     fact_2020_5:
-      value: "9545.20"
+      value: "637.19"
       decimals: 2
       dimensions:
         concept: bach:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsTotal
         entity: urn:lei:123456789
-        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
+        period: 2021-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
     fact_2020_6:
-      value: "67026.59"
+      value: "277251.67"
       decimals: 2
       dimensions:
         concept: xebr:OtherOperatingExpensesTotal
         entity: urn:lei:123456789
-        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
-        unit: iso4217:EUR
+        period: 2021-01-01T00:00:00/2020-01-01T00:00:00
+        unit: iso4217:EUR   
     fact_2020_7:
-      value: "3226.21"
+      value: "308827.63"
+      decimals: 2
+      dimensions:
+        concept: bach:FinancialIncomeTotal
+        entity: urn:lei:123456789
+        period: 2021-01-01T00:00:00/2020-01-01T00:00:00
+        unit: iso4217:EUR
+    fact_2020_8:
+      value: "5206.15"
       decimals: 2
       dimensions:
         concept: bach:TaxOnProfitOrLoss
         entity: urn:lei:123456789
-        period: 2021-01-01T00:00:00/2022-01-01T00:00:00
+        period: 2021-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
-    fact_2020_8:
-      value: "12788.53"
+    fact_2020_9:
+      value: "129327.73"
       decimals: 2
       dimensions:
         concept: xebr:ProfitLossForTheFinancialYearTotal
         entity: urn:lei:123456789
-        period: 2021-01-01T00:00:00/2022-01-01T00:00:00
+        period: 2021-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR

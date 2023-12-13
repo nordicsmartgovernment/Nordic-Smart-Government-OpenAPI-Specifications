@@ -8,3 +8,7 @@ content:
         $ref: ../examples/SimpleFinancialStatmentExample.yaml
       Full-Example-1:
         $ref: '../examples/FullFinancialStatementExample_1.yaml'
+      Full-Example-2:
+        $ref: '../examples/FullFinancialStatementExample_2.yaml'
+      Full-Example-3:
+        $ref: '../examples/FullFinancialStatementExample_3.yaml'

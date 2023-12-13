@@ -9,17 +9,16 @@ properties:
     enum:
       - bach:NetTurnover
       - bach:VariationInStocksOfFinishedGoodsAndWorkInProgress
-      - bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised
+      - bach:RawMaterialsAndConsumables
       - bach:OtherOperatingIncome
-      - bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised
       - bach:OtherExternalCharges
-      - xebr:StaffCostsPresentation
+      - bach:StaffCostsTotal
       - xebr:WagesAndSalaries
       - xebr:SocialSecurityCosts
-      - xebr:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsPresentation
+      - bach:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsTotal
       - xebr:ValueAdjustementsInRespectOfFormationExpensesAndOfTangibleAndIntangibleFixedAssets
       - xebr:ValueAdjustementsInRespectOfCurrentAssetsToTheExtendThatTheyExceedTheAmountOfValueAdjusmentsWhichAreNormalInTheUndertakingConcerned
-      - xebr:OtherOperatingExpensesPresentation
+      - xebr:OtherOperatingExpensesTotal
       - bach:FinancialIncomeTotal
       - xebr:IncomeFromOtherInvestmentsAndLoansFormingPartOfTheFixedAssets
       - xebr:IncomeFromOtherInvestmentsAndLoansFormingPartOfTheFixedAssetsOfWhichDerivedFromAffiliatedUndertakings
@@ -30,6 +29,10 @@ properties:
       - bach:ProfitOrLossAfterTaxation
       - xebr:OtherTaxes
       - xebr:ProfitLossForTheFinancialYearTotal
+      - xebr:CostOfSalesIncludingValueAdjustments
+      - xebr:GrossProfitOrLoss
+      - xebr:DistribustionCostsIncludingValueAdjustments
+      - xebr:AdministrationExpensesIncludingValueAdjustments
       - xbrl:note
   entity:
     type: string

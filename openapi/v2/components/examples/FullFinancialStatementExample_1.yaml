@@ -1,4 +1,4 @@
-summary: Full income statement example
+summary: Full example 1
 value:
   documentInfo:
     documentType: https://xbrl.org/2021/xbrl-json
@@ -31,7 +31,7 @@ value:
       value: "372262"
       decimals: 0
       dimensions:
-        concept: bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised
+        concept: bach:RawMaterialsAndConsumables
         entity: urn:lei:123456789
         period: 2020-01-01T00:00:00/2021-01-01T00:00:00
     fact_2019_4:
@@ -46,7 +46,7 @@ value:
       value: "52632931"
       decimals: 0
       dimensions:
-        concept: bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised
+        concept: bach:RawMaterialsAndConsumables
         entity: urn:lei:123456789
         period: 2020-01-01T00:00:00/2021-01-01T00:00:00
         unit: iso4217:EUR
@@ -62,7 +62,7 @@ value:
       value: "27299037"
       decimals: 0
       dimensions:
-        concept: xebr:StaffCostsPresentation
+        concept: bach:StaffCostsTotal
         entity: urn:lei:123456789
         period: 2020-01-01T00:00:00/2021-01-01T00:00:00
         unit: iso4217:EUR
@@ -70,7 +70,7 @@ value:
       value: "4071669"
       decimals: 0
       dimensions:
-        concept: xebr:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsPresentation
+        concept: bach:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsTotal
         entity: urn:lei:123456789
         period: 2020-01-01T00:00:00/2021-01-01T00:00:00
         unit: iso4217:EUR
@@ -78,7 +78,7 @@ value:
       value: "21515953"
       decimals: 0
       dimensions:
-        concept: xebr:OtherOperatingExpensesPresentation
+        concept: xebr:OtherOperatingExpensesTotal
         entity: urn:lei:123456789
         period: 2020-01-01T00:00:00/2021-01-01T00:00:00
         unit: iso4217:EUR
@@ -118,7 +118,7 @@ value:
       value: "374819"
       decimals: 0
       dimensions:
-        concept: bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised
+        concept: bach:RawMaterialsAndConsumables
         entity: urn:lei:123456789
         period: 2019-01-01T00:00:00/2020-01-01T00:00:00
     fact_2020_4:
@@ -133,7 +133,7 @@ value:
       value: "35416502"
       decimals: 0
       dimensions:
-        concept: bach:WorkPerformedByTheUndertakingForItsOwnPurposesAndCapitalised
+        concept: bach:RawMaterialsAndConsumables
         entity: urn:lei:123456789
         period: 2019-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
@@ -149,7 +149,7 @@ value:
       value: "23640754"
       decimals: 0
       dimensions:
-        concept: xebr:StaffCostsPresentation
+        concept: bach:StaffCostsTotal
         entity: urn:lei:123456789
         period: 2019-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
@@ -157,7 +157,7 @@ value:
       value: "2886493"
       decimals: 0
       dimensions:
-        concept: xebr:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsPresentation
+        concept: bach:DepreciationAndAmortizationOnIntangibleAndTangibleFixedAssetsTotal
         entity: urn:lei:123456789
         period: 2019-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
@@ -165,7 +165,7 @@ value:
       value: "17438120"
       decimals: 0
       dimensions:
-        concept: xebr:OtherOperatingExpensesPresentation
+        concept: xebr:OtherOperatingExpensesTotal
         entity: urn:lei:123456789
         period: 2019-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
