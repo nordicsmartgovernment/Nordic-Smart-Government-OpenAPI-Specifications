@@ -616,44 +616,24 @@ components:
           format: date
         identifier:
           $ref: '#/components/schemas/Identifier'
-    Membership:
-      title: Membership
+    Post:
+      title: Post
       type: object
-      description: Indicates the nature of an Agent's membership of a legal entity
+      description: Represents some position within an organization that exists independently of the agent or agents filling it. A post can be held by multiple persons or legal entities.
       externalDocs:
-        url: http://uri.suomi.fi/datamodel/ns/nsgb#Membership
-        description: nsgb:Membership
+        url: http://uri.suomi.fi/datamodel/ns/nsgb#Post
+        description: nsgb:Post
       properties:
         role:
           $ref: '#/components/schemas/Role'
-        memberLegalEntity:
-          $ref: '#/components/schemas/Identifier'
-        memberPerson:
-          $ref: '#/components/schemas/Person'
-    MembershipRequirements:
-      title: Membership requirement
-      type: object
-      description: Required number and type of memberships in a legal entity for signatory rules
-      externalDocs:
-        url: http://uri.suomi.fi/datamodel/ns/nsgb#MembershipRequirements
-        description: nsgb:MembershipRequirements
-      properties:
-        cardinality:
-          title: Cardinality
-          description: Membership requirment cardinality
-          type: string
-          enum:
-            - ONE_OF
-            - TWO_OF
-            - THREE_OF
-            - FOUR_OF
-            - FIVE_OF
-            - MAJORITY_OF
-            - ALL_OF
-        memberships:
+        heldByLegalEntity:
           type: array
           items:
-            $ref: '#/components/schemas/Membership'
+            $ref: '#/components/schemas/Identifier'
+        heldByPerson:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
     SignatoryRule:
       title: Signatory Rule
       type: object
@@ -662,18 +642,52 @@ components:
         url: http://uri.suomi.fi/datamodel/ns/nsgb#SignatoryRule
         description: nsgb:SignatoryRule
       properties:
-        code:
-          title: Code
-          description: The code of the signatory rule
+        description:
+          title: Description
+          description: The description of the rule
           type: string
-          enum:
-            - ALONE
-            - JOINTLY
-            - UNEXPLICIT
-        requirements:
-          title: Membership requirements
-          description: Required number and type of memberships in a legal entity for signatory rules
-          $ref: '#/components/schemas/MembershipRequirements'
+        majorityOf:
+          title: Majority of
+          description: Constraint property that requires majority of agents holding a post to string.
+          type: array
+          items:
+            $ref: '#/components/schemas/Post'
+        allOf:
+          title: All of
+          description: Constraint property that requires all of the agents holding a post to sign.
+          type: array
+          items:
+            $ref: '#/components/schemas/Post'
+        oneOf:
+          title: One of
+          description: Constraint property that requires one of the agents holding a post to sign.
+          type: array
+          items:
+            $ref: '#/components/schemas/Post'
+        twoOf:
+          title: Two of
+          description: Constraint property that requires two of the agents holding a post to sign.
+          type: array
+          items:
+            $ref: '#/components/schemas/Post'
+        threeOf:
+          title: Three of
+          description: Constraint property that requires three of the agents holding a post to sign.
+          type: array
+          items:
+            $ref: '#/components/schemas/Post'
+        fourOf:
+          title: Four of
+          description: Constraint property that requires four of the agents holding a post to sign.
+          type: array
+          items:
+            $ref: '#/components/schemas/Post'
+        fiveOf:
+          title: Five of
+          description: Constraint property that requires five of the agents holding a post to sign.
+          type: array
+          items:
+            $ref: '#/components/schemas/Post'
     SignatoryRights:
       title: Signatory rights
       type: object
@@ -1251,7 +1265,11 @@ components:
             $ref: '#/components/schemas/SignatoryRightsList'
           examples:
             Example-1:
-              $ref: '#/components/examples/SignatoryRightsExample'
+              $ref: '#/components/examples/SignatoryRightsExample_1'
+            Example-2:
+              $ref: '#/components/examples/SignatoryRightsExample_2'
+            Example-3:
+              $ref: '#/components/examples/SignatoryRightsExample_3'
     FinancialStatementResponse:
       description: Reply with requested financial statement data.
       content:
@@ -1268,24 +1286,92 @@ components:
             Full-Example-3:
               $ref: '#/components/examples/FullFinancialStatementExample_3'
   examples:
-    SignatoryRightsExample:
-      summary: Example of a signatory rights response
+    SignatoryRightsExample_1:
+      summary: Signatory rights example 1
       value:
         signatoryRights:
-          - description: Free text explaining the signatory rights
+          - description: The managing director can sign alone or two board members together
             signatoryRules:
-              - code: ALONE
-                requirements:
-                  cardinality: ONE_OF
-                  memberships:
-                    - role:
-                        notation: M
-                        prefLabel: Managing Director
-                      memberPerson:
-                        fullName: Example Person
+              - description: The managing director can sign alone
+                oneOf:
+                  - role:
+                      notation: M
+                      prefLabel: Managing Director
+                    heldByPerson:
+                      - fullName: Example Person
                         dateOfBirth: '1968-08-24'
                         identifier:
                           notation: ABC1234
+                          issuingAuthorityName: Civil registry of Exampleland
+              - description: Two board members together
+                twoOf:
+                  - role:
+                      notation: B
+                      prefLabel: Board Member
+                    heldByPerson:
+                      - fullName: Example Person
+                        dateOfBirth: '1968-08-24'
+                        identifier:
+                          notation: ABC1234
+                          issuingAuthorityName: Civil registry of Exampleland
+                      - fullName: Another Example Person
+                        dateOfBirth: '1970-12-31'
+                        identifier:
+                          notation: DEF5678
+                          issuingAuthorityName: Civil registry of Exampleland
+    SignatoryRightsExample_2:
+      summary: Signatory rights example 2
+      value:
+        signatoryRights:
+          - description: The managing director AND the director of the board can sign together
+            signatoryRules:
+              - description: The managing director AND the director of the board can sign together
+                oneOf:
+                  - role:
+                      notation: M
+                      prefLabel: Managing Director
+                    heldByPerson:
+                      - fullName: Example Person
+                        dateOfBirth: '1968-08-24'
+                        identifier:
+                          notation: ABC1234
+                          issuingAuthorityName: Civil registry of Exampleland
+                  - role:
+                      notation: D
+                      prefLabel: Director of the board
+                    heldByPerson:
+                      - fullName: Another Example Person
+                        dateOfBirth: '1961-01-12'
+                        identifier:
+                          notation: ABC53352
+                          issuingAuthorityName: Civil registry of Exampleland
+    SignatoryRightsExample_3:
+      summary: Signatory rights example 3
+      value:
+        signatoryRights:
+          - description: The managing director OR the the director of the board can sign alone
+            signatoryRules:
+              - description: The managing director can sign alone
+                oneOf:
+                  - role:
+                      notation: M
+                      prefLabel: Managing Director
+                    heldByPerson:
+                      - fullName: Example Person
+                        dateOfBirth: '1968-08-24'
+                        identifier:
+                          notation: ABC1234
+                          issuingAuthorityName: Civil registry of Exampleland
+              - description: The director of the board can sign alone
+                oneOf:
+                  - role:
+                      notation: D
+                      prefLabel: Director of the board
+                    heldByPerson:
+                      - fullName: Example Person
+                        dateOfBirth: '1960-08-24'
+                        identifier:
+                          notation: ABD2351
                           issuingAuthorityName: Civil registry of Exampleland
     SimpleFinancialStatmentExample:
       summary: Simple example with footnotes

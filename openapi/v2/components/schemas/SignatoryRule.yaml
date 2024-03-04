@@ -5,15 +5,49 @@ externalDocs:
   url: http://uri.suomi.fi/datamodel/ns/nsgb#SignatoryRule
   description: nsgb:SignatoryRule
 properties:
-  code:
-    title: Code
-    description: The code of the signatory rule
+  description:
+    title: Description
+    description: The description of the rule
     type: string
-    enum:
-      - ALONE
-      - JOINTLY
-      - UNEXPLICIT
-  requirements:
-    title: Membership requirements
-    description: Required number and type of memberships in a legal entity for signatory rules
-    $ref: './MembershipRequirements.yaml'
+  majorityOf:
+    title: Majority of
+    description: Constraint property that requires majority of agents holding a post to string.
+    type: array
+    items:
+      $ref: './Post.yaml'
+  allOf:
+    title: All of
+    description: Constraint property that requires all of the agents holding a post to sign.
+    type: array
+    items:
+      $ref: './Post.yaml'
+  oneOf:
+    title: One of
+    description: Constraint property that requires one of the agents holding a post to sign.
+    type: array
+    items:
+      $ref: './Post.yaml'
+  twoOf:
+    title: Two of
+    description: Constraint property that requires two of the agents holding a post to sign.
+    type: array
+    items:
+      $ref: './Post.yaml'
+  threeOf:
+    title: Three of
+    description: Constraint property that requires three of the agents holding a post to sign.
+    type: array
+    items:
+      $ref: './Post.yaml'
+  fourOf:
+    title: Four of
+    description: Constraint property that requires four of the agents holding a post to sign.
+    type: array
+    items:
+      $ref: './Post.yaml'
+  fiveOf:
+    title: Five of
+    description: Constraint property that requires five of the agents holding a post to sign.
+    type: array
+    items:
+      $ref: './Post.yaml'

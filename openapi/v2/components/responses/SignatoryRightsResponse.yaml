@@ -5,4 +5,8 @@ content:
       $ref: '../../components/schemas/SignatoryRightsList.yaml'
     examples:
       Example-1:
-        $ref: '../examples/SignatoryRightsExample.yaml'
+        $ref: '../examples/SignatoryRightsExample_1.yaml'
+      Example-2:
+        $ref: '../examples/SignatoryRightsExample_2.yaml'
+      Example-3:
+        $ref: '../examples/SignatoryRightsExample_3.yaml'

@@ -1,0 +1,17 @@
+title: Post
+type: object
+description: Represents some position within an organization that exists independently of the agent or agents filling it. A post can be held by multiple persons or legal entities.
+externalDocs: 
+  url: http://uri.suomi.fi/datamodel/ns/nsgb#Post
+  description: nsgb:Post
+properties: 
+  role:
+    $ref: './Role.yaml'
+  heldByLegalEntity:
+    type: array
+    items: 
+      $ref: './Identifier.yaml'
+  heldByPerson:
+    type: array
+    items:
+      $ref: './Person.yaml'
