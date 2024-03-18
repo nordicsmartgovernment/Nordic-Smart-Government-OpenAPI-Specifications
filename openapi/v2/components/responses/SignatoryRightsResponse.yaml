@@ -2,7 +2,7 @@ description: Reply with requested company data.
 content: 
   application/json:
     schema:
-      $ref: '../../components/schemas/SignatoryRightsList.yaml'
+      $ref: '../../components/schemas/SignatoryRights.yaml'
     examples:
       Example-1:
         $ref: '../examples/SignatoryRightsExample_1.yaml'

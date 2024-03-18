@@ -1,25 +1,24 @@
 summary: Signatory rights example 2
 value:
-  signatoryRights:
-  - description: The managing director AND the director of the board can sign together
-    signatoryRules:
-      - description: The managing director AND the director of the board can sign together
-        oneOf:
-          - role:
-              notation: M
-              prefLabel: Managing Director
-            heldByPerson:
-              - fullName: Example Person
-                dateOfBirth: 1968-08-24
-                identifier:
-                  notation: ABC1234
-                  issuingAuthorityName: Civil registry of Exampleland
-          - role:
-              notation: D
-              prefLabel: Director of the board
-            heldByPerson:
-              - fullName: Another Example Person
-                dateOfBirth: 1961-01-12
-                identifier:
-                  notation: ABC53352
-                  issuingAuthorityName: Civil registry of Exampleland
+  description: The managing director AND the director of the board can sign together
+  signatoryRules:
+    - description: The managing director AND the director of the board can sign together
+      alone:
+        - role:
+            notation: M
+            prefLabel: Managing Director
+          heldByPerson:
+            - fullName: Example Person
+              dateOfBirth: 1968-08-24
+              identifier:
+                notation: ABC1234
+                issuingAuthorityName: Civil registry of Exampleland
+        - role:
+            notation: D
+            prefLabel: Director of the board
+          heldByPerson:
+            - fullName: Another Example Person
+              dateOfBirth: 1961-01-12
+              identifier:
+                notation: ABC53352
+                issuingAuthorityName: Civil registry of Exampleland

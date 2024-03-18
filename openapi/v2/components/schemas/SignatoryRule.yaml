@@ -9,6 +9,12 @@ properties:
     title: Description
     description: The description of the rule
     type: string
+  alone:
+    title: Alone
+    description: Constraint property that requires exactly one of the agents holding a post to sign.
+    type: array
+    items:
+      $ref: './Post.yaml'
   majorityOf:
     title: Majority of
     description: Constraint property that requires majority of agents holding a post to string.

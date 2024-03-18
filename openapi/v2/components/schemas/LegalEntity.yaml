@@ -35,8 +35,6 @@ properties:
   legalStatus:
     $ref: './LegalStatus.yaml'
   signatoryRights:
-    type: array
-    items:
       $ref: './SignatoryRights.yaml'
 required:
   - identifier

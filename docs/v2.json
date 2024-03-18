@@ -810,6 +810,14 @@
             "description": "The description of the rule",
             "type": "string"
           },
+          "alone": {
+            "title": "Alone",
+            "description": "Constraint property that requires exactly one of the agents holding a post to sign.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Post"
+            }
+          },
           "majorityOf": {
             "title": "Majority of",
             "description": "Constraint property that requires majority of agents holding a post to string.",
@@ -941,10 +949,7 @@
             "$ref": "#/components/schemas/LegalStatus"
           },
           "signatoryRights": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SignatoryRights"
-            }
+            "$ref": "#/components/schemas/SignatoryRights"
           }
         },
         "required": [
@@ -1079,18 +1084,6 @@
           "title",
           "type"
         ]
-      },
-      "SignatoryRightsList": {
-        "type": "object",
-        "properties": {
-          "signatoryRights": {
-            "description": "List of Legal Entity's signatory rights",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SignatoryRights"
-            }
-          }
-        }
       },
       "FinancialStatementQuery": {
         "title": "FinancialStatementQuery",
@@ -1550,7 +1543,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/SignatoryRightsList"
+              "$ref": "#/components/schemas/SignatoryRights"
             },
             "examples": {
               "Example-1": {
@@ -1595,57 +1588,53 @@
       "SignatoryRightsExample_1": {
         "summary": "Signatory rights example 1",
         "value": {
-          "signatoryRights": [
+          "description": "The managing director can sign alone or two board members together",
+          "signatoryRules": [
             {
-              "description": "The managing director can sign alone or two board members together",
-              "signatoryRules": [
+              "description": "The managing director can sign alone",
+              "alone": [
                 {
-                  "description": "The managing director can sign alone",
-                  "oneOf": [
+                  "role": {
+                    "notation": "M",
+                    "prefLabel": "Managing Director"
+                  },
+                  "heldByPerson": [
                     {
-                      "role": {
-                        "notation": "M",
-                        "prefLabel": "Managing Director"
-                      },
-                      "heldByPerson": [
-                        {
-                          "fullName": "Example Person",
-                          "dateOfBirth": "1968-08-24",
-                          "identifier": {
-                            "notation": "ABC1234",
-                            "issuingAuthorityName": "Civil registry of Exampleland"
-                          }
-                        }
-                      ]
+                      "fullName": "Example Person",
+                      "dateOfBirth": "1968-08-24",
+                      "identifier": {
+                        "notation": "ABC1234",
+                        "issuingAuthorityName": "Civil registry of Exampleland"
+                      }
                     }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "description": "Two board members together",
+              "twoOf": [
                 {
-                  "description": "Two board members together",
-                  "twoOf": [
+                  "role": {
+                    "notation": "B",
+                    "prefLabel": "Board Member"
+                  },
+                  "heldByPerson": [
                     {
-                      "role": {
-                        "notation": "B",
-                        "prefLabel": "Board Member"
-                      },
-                      "heldByPerson": [
-                        {
-                          "fullName": "Example Person",
-                          "dateOfBirth": "1968-08-24",
-                          "identifier": {
-                            "notation": "ABC1234",
-                            "issuingAuthorityName": "Civil registry of Exampleland"
-                          }
-                        },
-                        {
-                          "fullName": "Another Example Person",
-                          "dateOfBirth": "1970-12-31",
-                          "identifier": {
-                            "notation": "DEF5678",
-                            "issuingAuthorityName": "Civil registry of Exampleland"
-                          }
-                        }
-                      ]
+                      "fullName": "Example Person",
+                      "dateOfBirth": "1968-08-24",
+                      "identifier": {
+                        "notation": "ABC1234",
+                        "issuingAuthorityName": "Civil registry of Exampleland"
+                      }
+                    },
+                    {
+                      "fullName": "Another Example Person",
+                      "dateOfBirth": "1970-12-31",
+                      "identifier": {
+                        "notation": "DEF5678",
+                        "issuingAuthorityName": "Civil registry of Exampleland"
+                      }
                     }
                   ]
                 }
@@ -1657,44 +1646,40 @@
       "SignatoryRightsExample_2": {
         "summary": "Signatory rights example 2",
         "value": {
-          "signatoryRights": [
+          "description": "The managing director AND the director of the board can sign together",
+          "signatoryRules": [
             {
               "description": "The managing director AND the director of the board can sign together",
-              "signatoryRules": [
+              "alone": [
                 {
-                  "description": "The managing director AND the director of the board can sign together",
-                  "oneOf": [
+                  "role": {
+                    "notation": "M",
+                    "prefLabel": "Managing Director"
+                  },
+                  "heldByPerson": [
                     {
-                      "role": {
-                        "notation": "M",
-                        "prefLabel": "Managing Director"
-                      },
-                      "heldByPerson": [
-                        {
-                          "fullName": "Example Person",
-                          "dateOfBirth": "1968-08-24",
-                          "identifier": {
-                            "notation": "ABC1234",
-                            "issuingAuthorityName": "Civil registry of Exampleland"
-                          }
-                        }
-                      ]
-                    },
+                      "fullName": "Example Person",
+                      "dateOfBirth": "1968-08-24",
+                      "identifier": {
+                        "notation": "ABC1234",
+                        "issuingAuthorityName": "Civil registry of Exampleland"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "role": {
+                    "notation": "D",
+                    "prefLabel": "Director of the board"
+                  },
+                  "heldByPerson": [
                     {
-                      "role": {
-                        "notation": "D",
-                        "prefLabel": "Director of the board"
-                      },
-                      "heldByPerson": [
-                        {
-                          "fullName": "Another Example Person",
-                          "dateOfBirth": "1961-01-12",
-                          "identifier": {
-                            "notation": "ABC53352",
-                            "issuingAuthorityName": "Civil registry of Exampleland"
-                          }
-                        }
-                      ]
+                      "fullName": "Another Example Person",
+                      "dateOfBirth": "1961-01-12",
+                      "identifier": {
+                        "notation": "ABC53352",
+                        "issuingAuthorityName": "Civil registry of Exampleland"
+                      }
                     }
                   ]
                 }
@@ -1706,49 +1691,45 @@
       "SignatoryRightsExample_3": {
         "summary": "Signatory rights example 3",
         "value": {
-          "signatoryRights": [
+          "description": "The managing director OR the the director of the board can sign alone",
+          "signatoryRules": [
             {
-              "description": "The managing director OR the the director of the board can sign alone",
-              "signatoryRules": [
+              "description": "The managing director can sign alone",
+              "alone": [
                 {
-                  "description": "The managing director can sign alone",
-                  "oneOf": [
+                  "role": {
+                    "notation": "M",
+                    "prefLabel": "Managing Director"
+                  },
+                  "heldByPerson": [
                     {
-                      "role": {
-                        "notation": "M",
-                        "prefLabel": "Managing Director"
-                      },
-                      "heldByPerson": [
-                        {
-                          "fullName": "Example Person",
-                          "dateOfBirth": "1968-08-24",
-                          "identifier": {
-                            "notation": "ABC1234",
-                            "issuingAuthorityName": "Civil registry of Exampleland"
-                          }
-                        }
-                      ]
+                      "fullName": "Example Person",
+                      "dateOfBirth": "1968-08-24",
+                      "identifier": {
+                        "notation": "ABC1234",
+                        "issuingAuthorityName": "Civil registry of Exampleland"
+                      }
                     }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "description": "The director of the board can sign alone",
+              "alone": [
                 {
-                  "description": "The director of the board can sign alone",
-                  "oneOf": [
+                  "role": {
+                    "notation": "D",
+                    "prefLabel": "Director of the board"
+                  },
+                  "heldByPerson": [
                     {
-                      "role": {
-                        "notation": "D",
-                        "prefLabel": "Director of the board"
-                      },
-                      "heldByPerson": [
-                        {
-                          "fullName": "Example Person",
-                          "dateOfBirth": "1960-08-24",
-                          "identifier": {
-                            "notation": "ABD2351",
-                            "issuingAuthorityName": "Civil registry of Exampleland"
-                          }
-                        }
-                      ]
+                      "fullName": "Example Person",
+                      "dateOfBirth": "1960-08-24",
+                      "identifier": {
+                        "notation": "ABD2351",
+                        "issuingAuthorityName": "Civil registry of Exampleland"
+                      }
                     }
                   ]
                 }

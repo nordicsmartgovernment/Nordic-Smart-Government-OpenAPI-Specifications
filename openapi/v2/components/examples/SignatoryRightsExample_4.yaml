@@ -1,8 +1,8 @@
 summary: Signatory rights example 1
 value:
-  description: The managing director can sign alone or two board members together
+  description: The managing director alone and two board members together
   signatoryRules:
-    - description: The managing director can sign alone
+    - description: The managing director and two board members together
       alone:
         - role:
             notation: M
@@ -13,7 +13,6 @@ value:
               identifier:
                 notation: ABC1234
                 issuingAuthorityName: Civil registry of Exampleland
-    - description: Two board members together
       twoOf:
         - role:
             notation: B
