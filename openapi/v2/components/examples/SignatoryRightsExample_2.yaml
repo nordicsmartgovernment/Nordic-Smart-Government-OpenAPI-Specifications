@@ -3,7 +3,7 @@ value:
   description: The managing director AND the director of the board can sign together
   signatoryRules:
     - description: The managing director AND the director of the board can sign together
-      alone:
+      allOf:
         - role:
             notation: M
             prefLabel: Managing Director

@@ -14,7 +14,7 @@ value:
                 notation: ABC1234
                 issuingAuthorityName: Civil registry of Exampleland
     - description: Two board members together
-      twoOf:
+      allOf:
         - role:
             notation: B
             prefLabel: Board Member

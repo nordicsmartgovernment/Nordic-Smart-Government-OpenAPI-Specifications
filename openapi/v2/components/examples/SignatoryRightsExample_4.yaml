@@ -1,9 +1,9 @@
 summary: Signatory rights example 1
 value:
-  description: The managing director alone and two board members together
+  description: The managing director and two board members together
   signatoryRules:
     - description: The managing director and two board members together
-      alone:
+      oneOf:
         - role:
             notation: M
             prefLabel: Managing Director
