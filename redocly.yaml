@@ -9,6 +9,7 @@ extends:
 rules:
   no-unused-components: error
   paths-kebab-case: error
+  no-invalid-media-type-examples: off
 theme:
   openapi:
     htmlTemplate: ./docs/index.html

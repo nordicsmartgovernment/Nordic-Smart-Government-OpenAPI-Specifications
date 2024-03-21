@@ -1,0 +1,14 @@
+summary: Example organisation
+value:
+  identifier: 
+    - issuingAuthorityName: "Swedish Business Information System"
+      notation: "1efsef9"
+    - issuingAuthorityName: "LEI Register"
+      notation: "5esfes4"
+  registrationDate: "2020-01-01"
+  name: "Example Oy"
+  legalStatus:
+    code: "NONE"
+  legalForm:
+    code: "SE_SB"
+    name: "Sparbank"

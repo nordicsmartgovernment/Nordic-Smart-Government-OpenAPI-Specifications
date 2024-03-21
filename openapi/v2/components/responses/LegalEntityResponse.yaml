@@ -2,7 +2,12 @@ description: Reply with requested company data.
 content: 
   application/json:
     schema:
-      $ref: '../../components/schemas/LegalEntity.yaml'
+      $ref: '../schemas/LegalEntity.yaml'
+    examples: 
+      Entity-Example-1:
+        $ref: '../examples/LegalEntityExample_1.yaml'
+      Entity-Example-2:
+        $ref: '../examples/LegalEntityExample_2.yaml'
   application/json-ld:
     schema: 
       $ref: '../../components/schemas/LegalEntityInLinkedData.yaml'

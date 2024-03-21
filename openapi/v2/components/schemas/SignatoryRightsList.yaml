@@ -1,7 +1,0 @@
-type: object
-properties: 
-  signatoryRights:
-    description: List of Legal Entity's signatory rights
-    type: array
-    items:
-      $ref: './SignatoryRights.yaml'

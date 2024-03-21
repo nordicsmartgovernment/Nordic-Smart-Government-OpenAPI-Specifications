@@ -1237,51 +1237,37 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/FinancialStatementQuery'
-  responses:
-    LegalEntityResponse:
-      description: Reply with requested company data.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/LegalEntity'
-        application/json-ld:
-          schema:
-            $ref: '#/components/schemas/LegalEntityInLinkedData'
-    ErrorResponse:
-      description: API error
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/ApiError'
-    SignatoryRightsResponse:
-      description: Reply with requested company data.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/SignatoryRights'
-          examples:
-            Example-1:
-              $ref: '#/components/examples/SignatoryRightsExample_1'
-            Example-2:
-              $ref: '#/components/examples/SignatoryRightsExample_2'
-            Example-3:
-              $ref: '#/components/examples/SignatoryRightsExample_3'
-    FinancialStatementResponse:
-      description: Reply with requested financial statement data.
-      content:
-        application/json; charset=utf-8:
-          schema:
-            $ref: '#/components/schemas/Facts'
-          examples:
-            Simple-Example-1:
-              $ref: '#/components/examples/SimpleFinancialStatmentExample'
-            Full-Example-1:
-              $ref: '#/components/examples/FullFinancialStatementExample_1'
-            Full-Example-2:
-              $ref: '#/components/examples/FullFinancialStatementExample_2'
-            Full-Example-3:
-              $ref: '#/components/examples/FullFinancialStatementExample_3'
   examples:
+    LegalEntityExample_1:
+      summary: OneSauna Oy example
+      value:
+        identifier:
+          - issuingAuthorityName: Finnish Business Information System
+            notation: '123456789'
+          - issuingAuthorityName: LEI Register
+            notation: '54249873274'
+        registrationDate: '2020-01-01'
+        name: OneSauna Oy
+        legalStatus:
+          code: NONE
+        legalForm:
+          code: FI_OYJ
+          name: Julkinen osakeyhtiö
+    LegalEntityExample_2:
+      summary: Example organisation
+      value:
+        identifier:
+          - issuingAuthorityName: Swedish Business Information System
+            notation: 1efsef9
+          - issuingAuthorityName: LEI Register
+            notation: 5esfes4
+        registrationDate: '2020-01-01'
+        name: Example Oy
+        legalStatus:
+          code: NONE
+        legalForm:
+          code: SE_SB
+          name: Sparbank
     SignatoryRightsExample_1:
       summary: Signatory rights example 1
       value:
@@ -1366,6 +1352,63 @@ components:
                     identifier:
                       notation: ABD2351
                       issuingAuthorityName: Civil registry of Exampleland
+    SignatoryRightsExample_4:
+      summary: Signatory rights example 4
+      value:
+        description: The managing director and two board members together
+        signatoryRules:
+          - description: The managing director and two board members together
+            oneOf:
+              - role:
+                  notation: M
+                  prefLabel: Managing Director
+                heldByPerson:
+                  - fullName: Example Person
+                    dateOfBirth: '1968-08-24'
+                    identifier:
+                      notation: ABC1234
+                      issuingAuthorityName: Civil registry of Exampleland
+            twoOf:
+              - role:
+                  notation: B
+                  prefLabel: Board Member
+                heldByPerson:
+                  - fullName: Example Person
+                    dateOfBirth: '1968-08-24'
+                    identifier:
+                      notation: ABC1234
+                      issuingAuthorityName: Civil registry of Exampleland
+                  - fullName: Another Example Person
+                    dateOfBirth: '1970-12-31'
+                    identifier:
+                      notation: DEF5678
+                      issuingAuthorityName: Civil registry of Exampleland
+    SignatoryRightsExample_SV_1:
+      summary: Signatory rights SV example 1
+      value:
+        description: The board have signatory rights
+        signatoryRules:
+          - description: The board have signatory rights
+            allOf:
+              - role:
+                  notation: B
+                  prefLabel: Board member
+                heldByPerson:
+                  - fullName: David Davidsson
+                    dateOfBirth: '1968-08-24'
+                    identifier:
+                      notation: ABC1234
+                      issuingAuthorityName: Civil registry of Svedeland
+                  - fullName: Erik Eriksson
+                    dateOfBirth: '1970-12-31'
+                    identifier:
+                      notation: DEF5678
+                      issuingAuthorityName: Civil registry of Svedeland
+                  - fullName: Frederik Fredriksson
+                    dateOfBirth: '1970-12-31'
+                    identifier:
+                      notation: GHI91011
+                      issuingAuthorityName: Civil registry of Svedeland
     SimpleFinancialStatmentExample:
       summary: Simple example with footnotes
       value:
@@ -1517,13 +1560,6 @@ components:
               entity: urn:lei:123456789
               period: 2019-01-01T00:00:00/2020-01-01T00:00:00
               unit: iso4217:EUR
-          fact_2020_3:
-            value: '374819'
-            decimals: 0
-            dimensions:
-              concept: bach:RawMaterialsAndConsumables
-              entity: urn:lei:123456789
-              period: 2019-01-01T00:00:00/2020-01-01T00:00:00
           fact_2020_4:
             value: '15076679'
             decimals: 0
@@ -1878,3 +1914,56 @@ components:
               entity: urn:lei:123456789
               period: 2021-01-01T00:00:00/2020-01-01T00:00:00
               unit: iso4217:EUR
+  responses:
+    LegalEntityResponse:
+      description: Reply with requested company data.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LegalEntity'
+          examples:
+            Entity-Example-1:
+              $ref: '#/components/examples/LegalEntityExample_1'
+            Entity-Example-2:
+              $ref: '#/components/examples/LegalEntityExample_2'
+        application/json-ld:
+          schema:
+            $ref: '#/components/schemas/LegalEntityInLinkedData'
+    ErrorResponse:
+      description: API error
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+    SignatoryRightsResponse:
+      description: Reply with requested company data.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SignatoryRights'
+          examples:
+            Signatory-Example-1:
+              $ref: '#/components/examples/SignatoryRightsExample_1'
+            Signatory-Example-2:
+              $ref: '#/components/examples/SignatoryRightsExample_2'
+            Signatory-Example-3:
+              $ref: '#/components/examples/SignatoryRightsExample_3'
+            Signatory-Example-4:
+              $ref: '#/components/examples/SignatoryRightsExample_4'
+            Signatory-Example-5:
+              $ref: '#/components/examples/SignatoryRightsExample_SV_1'
+    FinancialStatementResponse:
+      description: Reply with requested financial statement data.
+      content:
+        application/json; charset=utf-8:
+          schema:
+            $ref: '#/components/schemas/Facts'
+          examples:
+            Simple-Example-1:
+              $ref: '#/components/examples/SimpleFinancialStatmentExample'
+            Full-Example-1:
+              $ref: '#/components/examples/FullFinancialStatementExample_1'
+            Full-Example-2:
+              $ref: '#/components/examples/FullFinancialStatementExample_2'
+            Full-Example-3:
+              $ref: '#/components/examples/FullFinancialStatementExample_3'

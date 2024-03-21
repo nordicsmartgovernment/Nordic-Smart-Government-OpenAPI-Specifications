@@ -114,13 +114,6 @@ value:
         entity: urn:lei:123456789
         period: 2019-01-01T00:00:00/2020-01-01T00:00:00
         unit: iso4217:EUR
-    fact_2020_3:
-      value: "374819"
-      decimals: 0
-      dimensions:
-        concept: bach:RawMaterialsAndConsumables
-        entity: urn:lei:123456789
-        period: 2019-01-01T00:00:00/2020-01-01T00:00:00
     fact_2020_4:
       value: "15076679"
       decimals: 0

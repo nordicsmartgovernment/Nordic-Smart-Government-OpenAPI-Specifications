@@ -1,0 +1,14 @@
+summary: OneSauna Oy example
+value:
+  identifier: 
+    - issuingAuthorityName: "Finnish Business Information System"
+      notation: "123456789"
+    - issuingAuthorityName: "LEI Register"
+      notation: "54249873274"
+  registrationDate: "2020-01-01"
+  name: "OneSauna Oy"
+  legalStatus:
+    code: "NONE"
+  legalForm:
+    code: "FI_OYJ"
+    name: "Julkinen osakeyhtiö"
