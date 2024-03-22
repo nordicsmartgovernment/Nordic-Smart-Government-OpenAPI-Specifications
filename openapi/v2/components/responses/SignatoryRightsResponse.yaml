@@ -14,3 +14,5 @@ content:
         $ref: '../examples/SignatoryRightsExample_4.yaml'
       Signatory-Example-5:
         $ref: '../examples/SignatoryRightsExample_SV_1.yaml'
+      Signatory-Example-6:
+        $ref: '../examples/SignatoryRightsExample_NO_1.yaml'
