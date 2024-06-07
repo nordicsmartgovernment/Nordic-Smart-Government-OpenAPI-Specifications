@@ -1,27 +1,28 @@
 summary: Signatory rights example 3
 value:
-  description: The managing director OR the the director of the board can sign alone
-  signatoryRules:
-    - description: The managing director can sign alone
-      alone:
-        - role:
-            notation: M
-            prefLabel: Managing Director
-          heldByPerson:
-            - fullName: Example Person
-              dateOfBirth: 1968-08-24
-              identifier:
-                notation: ABC1234
-                issuingAuthorityName: Civil registry of Exampleland
-    - description: The director of the board can sign alone
-      alone:
-        - role:
-            notation: D
-            prefLabel: Director of the board
-          heldByPerson:
-            - fullName: Example Person
-              dateOfBirth: 1960-08-24
-              identifier:
-                notation: ABD2351
-                issuingAuthorityName: Civil registry of Exampleland
+  signatoryRights:
+  - description: The managing director OR the the director of the board can sign alone
+    signatoryRules:
+      - description: The managing director can sign alone
+        oneOf:
+          - role:
+              notation: M
+              prefLabel: Managing Director
+            heldByPerson:
+              - fullName: Example Person
+                dateOfBirth: 1968-08-24
+                identifier:
+                  notation: ABC1234
+                  issuingAuthorityName: Civil registry of Exampleland
+      - description: The director of the board can sign alone
+        oneOf:
+          - role:
+              notation: D
+              prefLabel: Director of the board
+            heldByPerson:
+              - fullName: Example Person
+                dateOfBirth: 1960-08-24
+                identifier:
+                  notation: ABD2351
+                  issuingAuthorityName: Civil registry of Exampleland
                   
