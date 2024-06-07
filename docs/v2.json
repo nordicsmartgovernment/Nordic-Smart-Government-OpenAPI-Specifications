@@ -1083,7 +1083,7 @@
       "SignatoryRightsList": {
         "type": "object",
         "properties": {
-          "signatoryRights": {
+          "signatoryRightsType": {
             "description": "List of Legal Entity's signatory rights",
             "type": "array",
             "items": {
